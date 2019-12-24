@@ -21,4 +21,22 @@ module.exports = function (app) {
       res.json(dbExample);
     });
   });
+
+  // Submitting sign up information
+  app.post("/api/new", function(req,res){
+    
+    console.log('Login data collected: '+req.body);
+
+    User.create({
+      username: req.body.username,
+      pass: req.body.pass,
+      fname: req.body.fname,
+      middle_initial: req.body.middle_initial,
+      last_name: req.body.last_name,
+      email_address: req.body.email_address,
+      description: req.body.description
+
+    });
+    
+  });
 };
