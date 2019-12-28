@@ -15,15 +15,7 @@ module.exports = function (sequelize, DataTypes) {
     },
     draft: {
       type: DataTypes.BOOLEAN,
-      allowNull: false,
-      defaultValue: false,
-      validate: {
-        len: [1]
-      }
-    },
-    submitted: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
+      defaultValue: true,
     },
     category: {
       type: DataTypes.STRING,

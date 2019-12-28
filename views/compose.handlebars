@@ -1,36 +1,6 @@
 <div id="compose">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a class="navbar-brand" href="/">Shelve It! <i class="fas fa-book"></i></a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"></a>
-                </li>
-                <li class="nav-item dropdown" id="userIcon">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
-                            class="far fa-user-circle fa-lg"></i>
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Sign-In</a>
-                        <a class="dropdown-item" href="#">Sign-Up</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="/compose">Compose <i class="fas fa-feather-alt"></i></a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </nav>
     <br>
-    <div clas="container">
+    <div class="container">
         <div class="row">
             <div class="col-sm-1"></div>
             <div class="col-sm-10">
@@ -47,7 +17,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="storyBox">Once Upon a Time...</label>
-                                <textarea class="form-control" id="storyBox" rows="10"></textarea>
+                                <textarea class="form-control" id="storyBox" rows="10" spellcheck="true"></textarea>
                             </div>
                             <div class="form-group">
                                 <div class="row">
@@ -83,18 +53,77 @@
                                     Author Tools <i class="fas fa-toolbox"></i>
                                 </div>
                                 <div class="card-body">
-                                    <button class="btn btn-success" type="submit">Save Draft <i
+                                    <button class="btn btn-danger" type="reset">Discard <i
+                                            class="fas fa-eraser"></i></button>
+                                    <button class="btn btn-success" type="button">Save Draft <i
                                             class="fab fa-firstdraft"></i></button>
                                     <button class="btn btn-success" type="submit">Publish <i
                                             class="far fa-check-square"></i></button>
-                                    <button class="btn btn-success" type="edit">Edit <i
-                                            class="far fa-edit"></i></button>
                                 </div>
                             </div>
                         </form>
                     </div>
                     <div class="card-footer text-muted border-light">
                         Last worked on 12/27/19
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-1"></div>
+            <div class="col-sm-5">
+                <div class="card text-center text-white bg-dark mb-3">
+                    <div class="card-header border-light">
+                        <h2>Saved Drafts <i class="fab fa-firstdraft"></i></h2>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-light d-flex justify-content-between">
+                                Cras justo odio lorem
+                                <button class="btn btn-danger" type="button">Delete <i
+                                        class="fas fa-trash-alt"></i></button>
+                                <button class="btn btn-success" type="button">Edit <i class="far fa-edit"></i></button>
+                            </li>
+                            <li class="list-group-item list-group-item-light d-flex justify-content-between">
+                                Dapibus ac facilisis in
+                                <button class="btn btn-danger" type="button">Delete <i
+                                        class="fas fa-trash-alt"></i></button>
+                                <button class="btn btn-success" type="button">Edit <i class="far fa-edit"></i></button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-muted border-light">
+                        Rome wasn't built in a day.
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-5">
+                <div class="card text-center text-white bg-dark mb-3">
+                    <div class="card-header border-light">
+                        <h2>Published <i class="far fa-check-square"></i></h2>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            <li class="list-group-item list-group-item-light d-flex justify-content-between">
+                                Cras justo odio lorem
+                                <button class="btn btn-danger" type="button">Delete <i
+                                        class="fas fa-trash-alt"></i></button>
+                                <button class="btn btn-success" type="button">Edit <i class="far fa-edit"></i></button>
+                            </li>
+                            <li class="list-group-item list-group-item-light d-flex justify-content-between">
+                                Dapibus ac facilisis in
+                                <button class="btn btn-danger" type="button">Delete <i
+                                        class="fas fa-trash-alt"></i></button>
+                                <button class="btn btn-success" type="button">Edit <i class="far fa-edit"></i></button>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-footer text-muted border-light">
+                        Better read then dead.
                     </div>
                 </div>
             </div>
