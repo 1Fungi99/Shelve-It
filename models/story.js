@@ -25,7 +25,7 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
-    catergory: {
+    category: {
       type: DataTypes.STRING,
       defaultValue: "Other"
     },
@@ -38,8 +38,8 @@ module.exports = function (sequelize, DataTypes) {
       defaultValue: "English"
     },
     author: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
+      type: DataTypes.STRING,
+      defaultValue: "Anonymous"
     }
 
   }, {
