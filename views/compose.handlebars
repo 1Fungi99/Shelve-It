@@ -15,9 +15,11 @@
                                 <input type="title" class="form-control" id="titleBox"
                                     placeholder="Give Your Masterpiece a Title">
                             </div>
-                            <div class="form-group">
-                                <label for="storyBox">Once Upon a Time...</label>
-                                <textarea class="form-control" id="storyBox" rows="10" spellcheck="true"></textarea>
+                            <label for="editor">Editor Box</label>
+                            <div class="card bg-light mb-3" id="editorContainer">
+                                <div class="card-body">
+                                    <div id="editor"></div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <div class="row">
@@ -78,7 +80,7 @@
             <div class="col-sm-5">
                 <div class="card text-center text-white bg-dark mb-3">
                     <div class="card-header border-light">
-                        <h2>Saved Drafts <i class="fab fa-firstdraft"></i></h2>
+                        <h3>Saved Drafts <i class="fab fa-firstdraft"></i></h2>
                     </div>
                     <div class="card-body">
                         <ul class="list-group">
@@ -104,7 +106,7 @@
             <div class="col-sm-5">
                 <div class="card text-center text-white bg-dark mb-3">
                     <div class="card-header border-light">
-                        <h2>Published <i class="far fa-check-square"></i></h2>
+                        <h3>Published <i class="far fa-check-square"></i></h3>
                     </div>
                     <div class="card-body">
                         <ul class="list-group">
