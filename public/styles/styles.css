@@ -1,7 +1,17 @@
+/*
+ * Configure the z-index of the editor UI, so when inside a Bootstrap
+ * modal, it will be rendered over the modal.
+ */
+:root {
+    --ck-z-default: 100;
+    --ck-z-modal: calc( var(--ck-z-default) + 999 );
+}
+
 .list-group-item {
   line-height: 2.5;
 }
 
+<<<<<<< HEAD
 body {
   background-image: url('../images/Shelve\ IT\ background.png');
   background-repeat: no-repeat;
@@ -10,3 +20,16 @@ body {
   background-size: 100% 100%;
   
 };
+=======
+#editor {
+  color: #000000;
+}
+
+#editorContainer {
+  height: 60vh;
+}
+.ql-container.ql-snow {
+    border: 1px solid #ccc;
+    height: 90%;
+}
+>>>>>>> 3af27cd87b1441e3462bce73eb67015cbfdd1cac

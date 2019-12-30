@@ -8,14 +8,14 @@ module.exports = function (app) {
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function (req, res) {
-    db.Example.create(req.body).then(function (dbExample) {
-      res.json(dbExample);
+  // Create a new story
+  app.post("/api/compose", function (req, res) {
+    db.Story.create(req.body).then(function (dbStory) {
+      res.json(dbStory);
     });
   });
 
-  // Delete an example by id
+  // Delete a story by id
   app.delete("/api/examples/:id", function (req, res) {
     db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
       res.json(dbExample);
@@ -23,9 +23,9 @@ module.exports = function (app) {
   });
 
   // Submitting sign up information
-  app.post("/api/new", function(req,res){
-    
-    console.log('Login data collected: '+req.body);
+  app.post("/api/new", function (req, res) {
+
+    console.log('Login data collected: ' + req.body);
 
     User.create({
       username: req.body.username,
@@ -37,6 +37,6 @@ module.exports = function (app) {
       description: req.body.description
 
     });
-    
+
   });
 };
