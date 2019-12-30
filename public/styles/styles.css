@@ -1,3 +1,12 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+body {
+  background-image: url('../images/Shelve\ IT\ background.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  
+};
