@@ -1,0 +1,28 @@
+<div id="home">
+    <div class="container">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <h1>{{msg}}</h1>
+                <h2>This is our Readers page</h2>
+                <form class="clearfix mb-4" action="POST">
+                    <div class="form-group">
+                        <label for="search-text">Search by Book</label>
+                        <input type="text" id="search-text" class="form-control" aria-describedby="search-text"
+                            placeholder="Enter search Text">
+                    </div>
+
+                    <button id="submitbtn" class="btn btn-primary float-right">Submit</button>
+                </form>
+                <h3>Searches</h3>
+                <ul id="example-list" class="list-group">
+                    {{#each examples}}
+                    <li data-id="{{this.id}}" class="list-group-item">
+                        <a href="example/{{this.id}}">{{this.username}}</a>
+                        <button class="btn btn-danger float-right delete">ｘ</button>
+                    </li>
+                    {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

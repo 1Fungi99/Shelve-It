@@ -13,10 +13,18 @@ module.exports = function (app) {
   app.get("/compose", function (req, res) {
     res.render("compose", {
     });
+  });
 
-    // Render 404 page for any unmatched routes
-    app.get("*", function (req, res) {
-      res.render("404");
+  //Load Reader page for user
+  app.get("/reader", function (req, res) {
+    res.render("reader", {
+      msg: "this is the reader homepage"
     });
   });
+
+  // Render 404 page for any unmatched routes
+  app.get("*", function (req, res) {
+    res.render("404");
+  });
+
 };
