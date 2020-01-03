@@ -14,6 +14,7 @@ $(document).ready(function () {
         ['clean'],                                      // remove formatting button
     ];
 
+    // This constructor function is for the counter module to be created
     class Counter {
         constructor(quill, options) {
             this.quill = quill;
@@ -46,14 +47,14 @@ $(document).ready(function () {
 
         update() {
             var length = this.calculate();
-            var label = this.options.unit;
             this.container.innerText = length
         }
     };
 
-
+    // This line registers the new module created in the constructor function
     Quill.register('modules/counter', Counter);
 
+    // This creates the Quill editor with the custom modules specified
     var quill = new Quill("#quillContainer", {
         scrollingContainer: ".card-body",
         placeholder: "Compose your masterpiece...",
@@ -66,9 +67,18 @@ $(document).ready(function () {
         }
     });
 
-    $("#discardButton").on("click", function (event) {
+    // This on click event handler is for the discard button on 
+    // author tools, executes when user clicks yes on modal
+    $("#yesDiscard").on("click", function (event) {
         event.preventDefault();
-        alert("Discard Button Works");
+        // Title cleared
+        $("#titleBox").val("");
+        // Quill editor cleared using setText method from Quill doc
+        quill.setText("");
+        // Category cleared
+        $("#categoryBox").val("");
+        // Type cleared
+        $("#typeBox").val("");
     });
 
 

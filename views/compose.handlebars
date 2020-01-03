@@ -50,21 +50,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card border-light text-white bg-dark mb-3" style="display: inline-block">
-                                <div class="card-header border-light">
-                                    Author Tools <i class="fas fa-toolbox"></i>
-                                </div>
-                                <div class="card-body">
-                                    <button class="btn btn-danger" type="button" id="discardButton">Discard <i
-                                            class="fas fa-eraser"></i></button>
-                                    <button class="btn" type="button" id="counterBadge">Characters <span
-                                            class="badge badge-light" id="quillCounter"></span></button>
-                                    <button class="btn btn-success" type="submit">Save Draft <i
-                                            class="fab fa-firstdraft"></i></button>
-                                    <button class="btn btn-success" type="submit">Publish <i
-                                            class="far fa-check-square"></i></button>
-                                </div>
-                            </div>
+                            <!-- Using handlebars partials directory to display the authorTools -->
+                            {{> author/authorTools}}
                         </form>
                     </div>
                     <div class="card-footer text-muted border-light">
@@ -135,6 +122,8 @@
         </div>
     </div>
 </div>
+<!-- Using handlebars partials directory to display the modals -->
+{{> author/discardModal}}
 
 <!-- Jquery CDN here -->
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"

@@ -11,7 +11,9 @@ module.exports = function (sequelize, DataTypes) {
     story: {
       type: DataTypes.TEXT,
       allowNull: false,
-      len: [100] // "Minimun character length set to 100 characters"- Emir
+      validate: {
+        len: [100] // "Minimun character length set to 100 characters"- Emir
+      }
     },
     category: {
       type: DataTypes.STRING,

@@ -1,5 +1,7 @@
+// This line requires the models
 var db = require("../models");
 
+// This is the routes
 module.exports = function (app) {
   // Get all users 
   app.get("/api/user", function (req, res) {
@@ -8,23 +10,35 @@ module.exports = function (app) {
     });
   });
   //to get all the story data 
-  app.get("/api/story", function (req, res) {
-    db.Story.findAll({}).then(function (data) {
-      res.json(data);
+  app.get("/api/compose", function (req, res) {
+    db.Story.findAll({}).then(function (dbStory) {
+      res.json(dbStory);
     });
   });
 
-  // Create a new story
+  // POST route for creating a new story
   app.post("/api/compose", function (req, res) {
     db.Story.create(req.body).then(function (dbStory) {
       res.json(dbStory);
     });
   });
 
-  // Delete a story by id
-  app.delete("/api/examples/:id", function (req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
-      res.json(dbExample);
+  // DELETE route for deleting a story by id
+  app.delete("/api/compose/:id", function (req, res) {
+    db.Story.destroy({ where: { id: req.params.id } }).then(function (dbStory) {
+      res.json(dbStory);
+    });
+  });
+
+  // PUT route for updating a story
+  app.put("/api/compose", function (req, res) {
+    db.Story.update(
+      req.body, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function (dbStory) {
+      res.json(dbStory);
     });
   });
 
