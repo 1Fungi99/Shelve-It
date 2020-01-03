@@ -4,13 +4,6 @@ var $exampleDescription = $("#example-description");
 var $submitBtn = $("#submit");
 var $exampleList = $("#example-list");
 
-
-var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
-
-queryParams.q = $("#search-term")
-  .val()
-  .trim();
-
 // The API object contains methods for each kind of request we'll make
 var API = {
   saveExample: function (example) {
