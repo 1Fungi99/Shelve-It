@@ -60,7 +60,7 @@ function ReaderPage(NYTData) {
         var bookImage = $("<img>").attr("src", NYTData.items[i].volumeInfo.imageLinks[0]);
 
 
-        bookDeets.append("<h2>" + j + "<h2>");
+        bookDeets.append("<h4>" + "Result# " + j + "<h4>");
         bookDeets.append(
             "<p id=bookTitle><span class='title'>Image</span> <br>" + bookImage +
             "</p>"

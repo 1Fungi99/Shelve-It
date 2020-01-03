@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-8 offset-2">
                 <h1>{{msg}}</h1>
-                <h2>This is our Readers page</h2>
+                {{!-- <h2> Readers page</h2> --}}
                 <form class="clearfix mb-4" action="POST">
                     <div class="form-group">
                         <label for="search-text">Search by Book</label>
@@ -13,18 +13,38 @@
 
                     <button id="submitbtn" class="btn btn-primary float-right">Submit</button>
                 </form>
-                <h3>Searches</h3>
-                <div id="book-list" class="list-group">
 
 
-
-
-                    <p data-id="{{this.id}}" class="list-group-item">
-                        <a href="example/{{this.id}}">{{this.username}}</a>
-                        <button class="btn btn-danger float-right delete">ｘ</button>
-                    </p>
-
+                <!--Trending stories Shelve-It -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <br>
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>
+                                    <i class="fa fa-table"></i> Author Stories </strong>
+                            </div>
+                            <div class="card-body" id="story-list">
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Search result section -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <br>
+                        <div class="card">
+                            <div class="card-header">
+                                <strong>
+                                    <i class="fa fa-table"></i> Searches</strong>
+                            </div>
+                            <div class="card-body" id="book-list">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

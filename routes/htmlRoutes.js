@@ -18,7 +18,7 @@ module.exports = function (app) {
   //Load Reader page for user
   app.get("/reader", function (req, res) {
     res.render("reader", {
-      msg: "this is the reader homepage"
+      msg: "Reader Homepage"
     });
   });
 

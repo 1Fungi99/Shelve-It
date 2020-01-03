@@ -1,9 +1,15 @@
 var db = require("../models");
 
 module.exports = function (app) {
-  // Get all examples
+  // Get all users 
   app.get("/api/user", function (req, res) {
     db.User.findAll({}).then(function (data) {
+      res.json(data);
+    });
+  });
+  //to get all the story data 
+  app.get("/api/story", function (req, res) {
+    db.Story.findAll({}).then(function (data) {
       res.json(data);
     });
   });
