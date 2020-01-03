@@ -14,14 +14,17 @@
                     <button id="submitbtn" class="btn btn-primary float-right">Submit</button>
                 </form>
                 <h3>Searches</h3>
-                <ul id="book-list" class="list-group">
-                    {{#each examples}}
-                    <li data-id="{{this.id}}" class="list-group-item">
+                <div id="book-list" class="list-group">
+
+
+
+
+                    <p data-id="{{this.id}}" class="list-group-item">
                         <a href="example/{{this.id}}">{{this.username}}</a>
                         <button class="btn btn-danger float-right delete">ｘ</button>
-                    </li>
-                    {{/each}}
-                </ul>
+                    </p>
+
+                </div>
             </div>
         </div>
     </div>
