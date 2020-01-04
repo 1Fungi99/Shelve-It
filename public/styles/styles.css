@@ -14,6 +14,18 @@ body {
   color: #000000;
 }
 
+h1 {
+  text-align: center;
+  font-family: 'Respess Capitals Excessive', arial;
+  font-size: 100px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 40px;
+  font-family: 'Respess Capitals Light', arial;
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* Quill Editor CSS changes Below */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
