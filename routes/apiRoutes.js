@@ -10,9 +10,9 @@ module.exports = function (app) {
     });
   });
   //to get all the story data 
-  app.get("/api/compose", function (req, res) {
-    db.Story.findAll({}).then(function (dbStory) {
-      res.json(dbStory);
+  app.get("/api/reader", function (req, res) {
+    db.Story.findAll({}).then(function (data) {
+      res.json(data);
     });
   });
 

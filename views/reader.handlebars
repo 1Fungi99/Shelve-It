@@ -26,6 +26,18 @@
                             </div>
                             <div class="card-body" id="story-list">
                             </div>
+                            <ul>
+                                {{#each stories}}
+
+                                <li>
+                                    <p style="color:grey;">
+                                        {{this.id}}. {{this.story}}
+
+                                    </p>
+                                </li>
+
+                                {{/each}}
+                            </ul>
                         </div>
                     </div>
                 </div>
