@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "komatsuyun19",
+    "password": "",
     "database": "shelveit_db",
     "host": "localhost",
     "dialect": "mysql"
