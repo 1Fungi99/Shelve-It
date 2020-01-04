@@ -81,7 +81,65 @@ $(document).ready(function () {
         $("#typeBox").val("");
     });
 
+    // This click event handler is for saving a draft to the database
+    $("#draftButton").on("click", function (event) {
+        event.preventDefault();
+        // This line gets the string contents of the editor. Non-string contents are omitted.
+        var quillCharacters = quill.getText().trim();
 
+        var story = {
+            title: $("#titleBox").val(),
+            // This gets the contents of the Quill editor in a Delta format --> https://quilljs.com/docs/delta/
+            // Then we stringify for submission to the database as a string, JSON.parse() will make it back into json object
+            storyText: JSON.stringify(quill.getContents()),
+            category: $("#categoryBox").val(),
+            storyType: $("#typeBox").val(),
+            draft: true
+        };
+
+        if (story.title.length >= 1 && quillCharacters.length >= 100 && story.category.length > 1 && story.storyType.length > 1) {
+            // When the form validation passes the AJAX POST-request will run
+            $.post("/api/compose", story)
+                // On success a modal pops up alerting of the success
+                .then(function (data) {
+                    console.log(data)
+                    $("#successful").modal();
+                });
+            // Empty the form after submission
+            // Title cleared
+            $("#titleBox").val("");
+            // Quill editor cleared using setText method from Quill doc
+            quill.setText("");
+            // Category cleared
+            $("#categoryBox").val("");
+            // Type cleared
+            $("#typeBox").val("");
+            // If validation fails for any field, else block runs
+        } else {
+            $("#incompleteFields").empty();
+            var fieldHeading = $("<p></p>").text("Please Fix the Following:");
+            var fieldList = $("<ol></ol>");
+            if (story.title.length < 1) {
+                let missingTitle = $("<li></li>").text("Missing Title");
+                fieldList.append(missingTitle);
+            }
+            if (quillCharacters.length < 100) {
+                let missingCharacters = $("<li></li>").text(quillCharacters.length + " out of 100 minimum characters needed");
+                fieldList.append(missingCharacters);
+            }
+            if (story.category.length < 1) {
+                let missingCategory = $("<li></li>").text("Missing Category.");
+                fieldList.append(missingCategory);
+            }
+            if (story.storyType.length < 1) {
+                let missingType = $("<li></li>").text("Missing Type.");
+                fieldList.append(missingType);
+            }
+            $("#incompleteFields").append(fieldHeading);
+            $("#incompleteFields").append(fieldList);
+            $("#notSuccessful").modal();
+        }
+    });
 });
 
 

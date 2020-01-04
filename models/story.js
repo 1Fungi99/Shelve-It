@@ -8,11 +8,11 @@ module.exports = function (sequelize, DataTypes) {
         len: [1, 80] // "Title range is from 1 character to 80 max"- Emir
       }
     },
-    story: {
+    storyText: {
       type: DataTypes.TEXT,
       allowNull: false,
       validate: {
-        len: [100] // "Minimun character length set to 100 characters"- Emir
+        len: [101] // "Minimun character length set to 101 characters"- Emir
       }
     },
     category: {
@@ -31,13 +31,9 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       defaultValue: "Anonymous" // "Need to figure out how to have the defaultValue be the User after they log in"- Emir
     },
-    draft: {
+    draft: { // "This will default to true everytime a new story is saved as draft, will be false if story is published" - Emir
       type: DataTypes.BOOLEAN,
       defaultValue: true,
-    },
-    complete: {
-      type: DataTypes.BOOLEAN, // "This will be used to make sure all of the fields are filled before submitting to database"- Emir
-      defaultValue: false
     }
 
   }, {
@@ -45,16 +41,16 @@ module.exports = function (sequelize, DataTypes) {
   }
 
   );
-
-  Story.associate = function (models) {
-    // We're saying that a Story should belong to an Author
-    // A Story can't be created without an Author due to the foreign key constraint
-    Story.belongsTo(models.User, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
-  };
+  // ====> "Commented out Temporarily to Test Form Submissions to database"- Emir <====
+  // Story.associate = function (models) {
+  //   // We're saying that a Story should belong to an Author
+  //   // A Story can't be created without an Author due to the foreign key constraint
+  //   Story.belongsTo(models.User, {
+  //     foreignKey: {
+  //       allowNull: false
+  //     }
+  //   });
+  // };
 
   return Story;
 };
