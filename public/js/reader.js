@@ -104,5 +104,22 @@ function ReaderPage(NYTData) {
 
     }
 }
+var posts;
+function getPosts(category) {
+    var categoryString = category || "";
+    if (categoryString) {
+        categoryString = "/category/" + categoryString;
+    }
+    $.get("/api/story" + categoryString, function (data) {
+        console.log("Posts", data);
+        posts = data;
+        if (!posts || !posts.length) {
+            displayEmpty();
+        }
+        else {
+            initializeRows();
+        }
+    });
+}
 
 $submitSearch.on("click", readerFormSubmit);
