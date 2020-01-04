@@ -11,16 +11,14 @@
   line-height: 2.5;
 }
 
-<<<<<<< HEAD
 body {
-  background-image: url('../images/Shelve\ IT\ background.png');
+  background-image: url('../images/shelveit_background_large.png');
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
   background-size: 100% 100%;
   
 };
-=======
 #editor {
   color: #000000;
 }
@@ -32,4 +30,3 @@ body {
     border: 1px solid #ccc;
     height: 90%;
 }
->>>>>>> 3af27cd87b1441e3462bce73eb67015cbfdd1cac
