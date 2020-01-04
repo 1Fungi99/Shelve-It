@@ -49,6 +49,10 @@ h2 {
   overflow-y: visible; 
 }
 
+/* This allows CSS styling to the placeholder text in Quill editor */
+.ql-editor.ql-blank::before{
+  padding: 0 0 0 35px;
+}
 
 /* Specify our own scrolling container */
 .card-body {
@@ -57,6 +61,9 @@ h2 {
   overflow-y: auto;
 }
 
+.ql-editor{
+  padding: 12px 0 200px 0;
+}
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* Quill Editor CSS changes Above */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

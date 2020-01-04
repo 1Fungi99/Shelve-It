@@ -50,13 +50,14 @@ module.exports = function (sequelize, DataTypes) {
     }
   });
 
-  User.associate = function (models) {
-    User.hasMany(models.Story, {
-      onDelete: "cascade"
+  // ====> "Commented out Temporarily to Test Form Submissions to database"- Emir <====
+  // User.associate = function (models) {
+  //   User.hasMany(models.Story, {
+  //     onDelete: "cascade"
 
-    });
+  //   });
 
-  }
+  // }
   return User;
 };
 
