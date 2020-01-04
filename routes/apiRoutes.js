@@ -15,6 +15,18 @@ module.exports = function (app) {
       res.json(data);
     });
   });
+  //to get all the story data - trial 2 
+  app.get("/stories", function (req, res) {
+    // findAll returns all entries for a table when used with no options
+    db.Story.findAll({}).then(function (data) {
+      console.log(data)
+      // We have access to the todos as an argument inside of the callback function
+      var storyObject = {
+        stories: data
+      };
+      res.render("reader", storyObject);
+    });
+  });
 
   // POST route for creating a new story
   app.post("/api/compose", function (req, res) {
