@@ -1,44 +1,126 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
-  </head>
-  <body>
-    <!-- Trigger modal display -->
-    <button id="modal-btn">Login</button>
+<html>
 
-<!-- Icon or decal still needed for log in page to add some jazz to it -->
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <!-- Modal -->
-    <div id="login" class="modal">
-      <!-- Modal Content -->
-      <div clas="modal-content">
-        <div class="modal-header">
-          <span class='close'>&times;</span>
-          <h2>Log in</h2>
-        </div>
-        <div class='modal-body'>
+  <!-- jQuery Link: -->
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
+  crossorigin="anonymous"></script>
+
+  <!-- BootStrap Links: -->
+  <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <!-- Quform Javascript Links:  -->
+  <!-- <script type="text/javascript" src="quform/js/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="quform/js/plugins.js"></script>
+  <script type="text/javascript" src="quform/js/scripts.js"></script> -->
+
+  <!-- Quform CSS Link: -->
+  <!-- <link rel="stylesheet" type="text/css" href="quform/css/base.css" /> -->
+
+  <!-- Style Sheets Link: -->
+  <!-- <link rel="stylesheet" type="text/css" href="../css/login.css"> -->
+</head>
+
+<body>
+  <!-- Trigger/Open The Modal -->
+  <button type="button" class="log-in btn btn-primary" data-toggle="modal" data-target="#log-in">Launch login modal</button>
+  <button type="button" class="sign-up btn btn-primary" data-toggle="modal" data-target="#sign-up">Launch signup modal</button>
+
+
+<!-- ===============================================v Login Modal v=================================================================== -->
+<div class="log-in modal fade" id="log-in" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Log in to Shelve It!</h5>
+        </button>
+      </div>
+      <div class="modal-body">
         <!-- To copy the form for Quform, start here -->
-            <!-- Form for the login -->
-            <form>
-                Username:<br>
-                <input type='text' name='username'><br>
-                Password:<br>
-                <input type='password' name='password'><br> <!--Password is displayed as ******-->
-                <button id='submit'>Log in</button>
-            </form>
+        <!-- Form for the login -->
+        <form class="quform" action="quform/process.php" method="post">
+          <div class="quform-elements">
+            Username:<br>
+            <div class="quform-input">
+              <input type='text' name='username'><br><br>
+            </div>
+            Password:<br>
+            <div class="quform-input">
+              <input type='password' name='password'><br><br>
+              <!--Password is displayed as ******-->
+            </div>
+            <button class="btn btn-secondary" id='submit'>Log in</button>
+          </div>
+        </form>
         <!-- To copy the form for Quform, end here -->
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
     </div>
+  </div>
+</div>
+<!-- ================================================^ Login Modal ^=================================================================== -->
 
 
-    <!-- Quform Links:  -->
-<script type="text/javascript" src="quform/js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="quform/js/plugins.js"></script>
-<script type="text/javascript" src="quform/js/scripts.js"></script>
-  
+
+
+
+<!-- ===============================================v Sign Up Modal v================================================================== -->
+<div class="sign-up modal fade" id="sign-up" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Sign Up for Shelve It!</h5>
+      </div>
+      <div class="modal-body">
+       <!-- To copy the form for Quform, start here -->
+      <!-- Form for the login -->
+      <form class="quform" action="quform/process.php" method="post">
+        <div class="quform-elements">
+          First Name:<br>
+          <div class="quform-input">
+            <input type='text' name='first-name'><br><br>
+          </div>
+          Last Name:<br>
+          <div class="quform-input">
+            <input type='text' name='last-name'><br><br>
+          </div>
+          Email Address:<br>
+          <div class="quform-input">
+            <input type='text' name='email'><br><br>
+          </div>
+          Username:<br>
+          <div class="quform-input">
+            <input type='text' name='username'><br><br>
+          </div>
+          Password:<br>
+          <div class="quform-input">
+            <input type='password' name='password'><br><br>
+            <!--Password is displayed as ******-->
+          </div>
+          <button class="btn btn-primary" id='submit'>Sign Up</button>
+        </div>
+      </form>
+      <!-- To copy the form for Quform, end here -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ===============================================^ Sign Up Modal ^================================================================== -->
+
+
 </body>
 </html>

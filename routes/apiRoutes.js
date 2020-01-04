@@ -1,24 +1,56 @@
+// This line requires the models
 var db = require("../models");
 
+// This is the routes
 module.exports = function (app) {
-  // Get all examples
+  // Get all users 
   app.get("/api/user", function (req, res) {
     db.User.findAll({}).then(function (data) {
       res.json(data);
     });
   });
+  //to get all the story data 
+  app.get("/api/reader", function (req, res) {
+    db.Story.findAll({}).then(function (data) {
+      res.json(data);
+    });
+  });
+  //to get all the story data - trial 2 
+  app.get("/stories", function (req, res) {
+    // findAll returns all entries for a table when used with no options
+    db.Story.findAll({}).then(function (data) {
+      console.log(data)
+      // We have access to the todos as an argument inside of the callback function
+      var storyObject = {
+        stories: data
+      };
+      res.render("reader", storyObject);
+    });
+  });
 
-  // Create a new story
+  // POST route for creating a new story
   app.post("/api/compose", function (req, res) {
     db.Story.create(req.body).then(function (dbStory) {
       res.json(dbStory);
     });
   });
 
-  // Delete a story by id
-  app.delete("/api/examples/:id", function (req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function (dbExample) {
-      res.json(dbExample);
+  // DELETE route for deleting a story by id
+  app.delete("/api/compose/:id", function (req, res) {
+    db.Story.destroy({ where: { id: req.params.id } }).then(function (dbStory) {
+      res.json(dbStory);
+    });
+  });
+
+  // PUT route for updating a story
+  app.put("/api/compose", function (req, res) {
+    db.Story.update(
+      req.body, {
+      where: {
+        id: req.body.id
+      }
+    }).then(function (dbStory) {
+      res.json(dbStory);
     });
   });
 

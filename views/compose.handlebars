@@ -12,20 +12,20 @@
                         <form id="authorBox">
                             <div class="form-group">
                                 <label for="titleBox">Title</label>
-                                <input type="title" class="form-control" id="titleBox"
+                                <input type="text" class="form-control" id="titleBox"
                                     placeholder="Give Your Masterpiece a Title">
                             </div>
-                            <label for="editor">Editor Box</label>
+                            <label for="editor">Editor</label>
                             <div class="card bg-light mb-3" id="editorContainer">
                                 <div class="card-body">
-                                    <div id="editor"></div>
+                                    <div id="quillContainer"></div>
                                 </div>
                             </div>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <label for="categoryBox">Category of Your Masterpiece</label>
-                                        <select class="form-control" id="categoryBox">
+                                        <label for="categoryBox">Category</label>
+                                        <select class="form-control" id="categoryBox" type="text">
                                             <option></option>
                                             <option>Poetry</option>
                                             <option>Drama</option>
@@ -36,7 +36,7 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <label for="typeBox">Type</label>
-                                        <select class="form-control" id="typeBox">
+                                        <select class="form-control" id="typeBox" type="text">
                                             <option></option>
                                             <option>Non-Fiction</option>
                                             <option>Fantasy</option>
@@ -50,19 +50,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card border-light text-white bg-dark mb-3" style="display: inline-block">
-                                <div class="card-header border-light">
-                                    Author Tools <i class="fas fa-toolbox"></i>
-                                </div>
-                                <div class="card-body">
-                                    <button class="btn btn-danger" type="reset">Discard <i
-                                            class="fas fa-eraser"></i></button>
-                                    <button class="btn btn-success" type="button">Save Draft <i
-                                            class="fab fa-firstdraft"></i></button>
-                                    <button class="btn btn-success" type="submit">Publish <i
-                                            class="far fa-check-square"></i></button>
-                                </div>
-                            </div>
+                            <!-- Using handlebars partials directory to display the authorTools -->
+                            {{> author/authorTools}}
                         </form>
                     </div>
                     <div class="card-footer text-muted border-light">
@@ -80,7 +69,7 @@
             <div class="col-sm-5">
                 <div class="card text-center text-white bg-dark mb-3">
                     <div class="card-header border-light">
-                        <h3>Saved Drafts <i class="fab fa-firstdraft"></i></h2>
+                        <h3>Drafts <i class="fab fa-firstdraft"></i></h2>
                     </div>
                     <div class="card-body">
                         <ul class="list-group">
@@ -133,3 +122,13 @@
         </div>
     </div>
 </div>
+<!-- Using handlebars partials directory to display the modals -->
+{{> author/discardModal}}
+{{> author/successful}}
+{{> author/notSuccessful}}
+
+<!-- Jquery CDN here -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Custom JS link for compose path -->
+<script src="/js/compose.js" type="text/javascript"></script>
