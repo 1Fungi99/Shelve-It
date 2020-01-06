@@ -11,12 +11,24 @@ module.exports = function (app) {
 
   // Load author page for user
   app.get("/compose", function (req, res) {
-    res.render("compose", {
-    });
-
-    // Render 404 page for any unmatched routes
-    app.get("*", function (req, res) {
-      res.render("404");
+    db.Story.findAll({}).then(function (dbStory) {
+      console.log(dbStory);
+      res.render("compose", {
+        stories: dbStory
+      });
     });
   });
+
+  //Load Reader page for user
+  app.get("/reader", function (req, res) {
+    res.render("reader", {
+      msg: "Reader Homepage"
+    });
+  });
+
+  // Render 404 page for any unmatched routes
+  app.get("*", function (req, res) {
+    res.render("404");
+  });
+
 };
