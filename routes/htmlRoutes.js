@@ -11,7 +11,11 @@ module.exports = function (app) {
 
   // Load author page for user
   app.get("/compose", function (req, res) {
-    res.render("compose", {
+    db.Story.findAll({}).then(function (dbStory) {
+      console.log(dbStory);
+      res.render("compose", {
+        stories: dbStory
+      });
     });
   });
 

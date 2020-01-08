@@ -27,6 +27,25 @@ h2 {
   font-family: 'Respess Capitals Light', arial;
 }
 
+.button {
+  display: inline-block;
+  margin: 0.75rem;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.1875rem;
+  outline: none;
+  background-color: tomato;
+  color: white;
+  font-family: inherit;
+  font-size: 1.25em;
+  font-weight: 400;
+  line-height: 1.5rem;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+}
+
 
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -37,6 +56,11 @@ h2 {
   height: 60vh;
 }
 
+.ql-container.ql-snow {
+  border: 1px solid #ccc;
+  height: 90%;
+}
+
 /* Tell Quill not to scroll */
 #quillContainer {
   color: #000000;
@@ -44,7 +68,27 @@ h2 {
   min-height: 100%;
   padding: 50px;
 }
+
 #quillContainer .ql-editor {
   font-size: 16px;
   overflow-y: visible; 
 }
+
+/* This allows CSS styling to the placeholder text in Quill editor */
+.ql-editor.ql-blank::before{
+  padding: 0 0 0 35px;
+}
+
+/* Specify our own scrolling container */
+.card-body {
+  height: 100%;
+  min-height: 100%;
+  overflow-y: auto;
+}
+
+.ql-editor{
+  padding: 12px 0 200px 0;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Quill Editor CSS changes Above */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

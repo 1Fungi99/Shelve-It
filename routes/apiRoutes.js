@@ -35,23 +35,39 @@ module.exports = function (app) {
     });
   });
 
+  // GET route for getting all of the stories
+  app.get("/api/compose", function (req, res) {
+    db.Story.findAll({}).then(function (dbStory) {
+      res.json(dbStory);
+    });
+  });
+
   // DELETE route for deleting a story by id
   app.delete("/api/compose/:id", function (req, res) {
-    db.Story.destroy({ where: { id: req.params.id } }).then(function (dbStory) {
-      res.json(dbStory);
+    db.Story.destroy({
+      where: {
+        id: req.params.id
+      }
+    }).then(function () {
+      res.end();
     });
   });
 
   // PUT route for updating a story
   app.put("/api/compose", function (req, res) {
-    db.Story.update(
-      req.body, {
-      where: {
-        id: req.body.id
-      }
-    }).then(function (dbStory) {
-      res.json(dbStory);
-    });
+    db.Story.update({
+      title: req.body.title,
+      storyText: req.body.storyText,
+      category: req.body.category,
+      storyType: req.body.storyType
+    },
+      {
+        where: {
+          id: req.body.id
+        }
+      }).then(function () {
+        res.end();
+      });
   });
 
   // Submitting sign up information
