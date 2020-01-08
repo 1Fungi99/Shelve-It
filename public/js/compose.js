@@ -108,6 +108,7 @@ $(document).ready(function () {
                     console.log(data)
                     $("#successTitle").text(btnSuccess);
                     $("#successBody").text(successBody);
+                    // location.reload();
                     $("#successful").modal();
                 });
             // Empty the form after submission
