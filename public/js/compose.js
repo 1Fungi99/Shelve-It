@@ -108,7 +108,6 @@ $(document).ready(function () {
                     console.log(data)
                     $("#successTitle").text(btnSuccess);
                     $("#successBody").text(successBody);
-                    // location.reload();
                     $("#successful").modal();
                 });
             // Empty the form after submission
@@ -212,6 +211,13 @@ $(document).ready(function () {
             $("#incompleteFields").append(fieldList);
             $("#notSuccessful").modal();
         }
+    });
+
+    // This on will ensure the author page is reloaded after the user saves a draft or publishes
+    $("#successful").on("hidden.bs.modal", function (event) {
+        event.preventDefault();
+        // Location reload will ensure the user sees their submissions on the compose path
+        location.reload();
     });
 });
 
