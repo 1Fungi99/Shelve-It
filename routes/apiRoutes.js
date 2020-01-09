@@ -28,6 +28,8 @@ module.exports = function (app) {
     });
   });
 
+  //============================ Story API Routes ==============================//
+
   // POST route for creating a new story
   app.post("/api/compose", function (req, res) {
     db.Story.create(req.body).then(function (dbStory) {
@@ -42,33 +44,41 @@ module.exports = function (app) {
     });
   });
 
+  // GET route for retrieving a single story
+  app.get("/api/compose/:id", function (req, res) {
+    db.Story.findOne({
+      where: {
+        id: req.params.id
+      }
+    }).then(function (dbStory) {
+      res.json(dbStory);
+    });
+  });
+
   // DELETE route for deleting a story by id
   app.delete("/api/compose/:id", function (req, res) {
     db.Story.destroy({
       where: {
         id: req.params.id
       }
-    }).then(function () {
-      res.end();
+    }).then(function (dbStory) {
+      res.json(dbStory);
     });
   });
 
   // PUT route for updating a story
   app.put("/api/compose", function (req, res) {
-    db.Story.update({
-      title: req.body.title,
-      storyText: req.body.storyText,
-      category: req.body.category,
-      storyType: req.body.storyType
-    },
+    db.Story.update(req.body,
       {
         where: {
           id: req.body.id
         }
-      }).then(function () {
-        res.end();
+      }).then(function (dbStory) {
+        res.json(dbStory);
       });
   });
+
+  //============================ Story API Routes ==============================//
 
   // Submitting sign up information
   app.post("/api/new", function (req, res) {

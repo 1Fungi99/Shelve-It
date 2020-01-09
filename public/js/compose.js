@@ -1,8 +1,12 @@
 // Logic for compose.js path
 $(document).ready(function () {
+  //================================MAIN EXECUTIONS=====================================//
 
-  // Global Variable when DOM loads, used for deletions of masterpieces
+  // Global Variables when DOM loads, used for flagging deletions & edits of masterpieces
+  var url = window.location.search;
   var executeDelete = false;
+  var updatingStory = false;
+  var editId = [];
 
   // This var array creates the custom Quill toolbar options
   var toolbarOptions = [
@@ -74,19 +78,226 @@ $(document).ready(function () {
   // author tools, executes when user clicks yes on modal
   $("#yesDiscard").on("click", function (event) {
     event.preventDefault();
-    // Title cleared
-    $("#titleBox").val("");
-    // Quill editor cleared using setText method from Quill doc
-    quill.setText("");
-    // Category cleared
-    $("#categoryBox").val("");
-    // Type cleared
-    $("#typeBox").val("");
+    discardAll();
   });
 
   // This click event handler is for saving a draft to the database
   $("#draftButton").on("click", function (event) {
     event.preventDefault();
+    if (!updatingStory) {
+      newDraftSubmission();
+    } else if (updatingStory) {
+      updateDraft();
+    }
+  });
+
+  // This click event handler is for posting a publish to the database
+  $("#publishButton").on("click", function (event) {
+    event.preventDefault();
+    if (!updatingStory) {
+      newPublishSubmission();
+    } else if (updatingStory) {
+      console.log("Successfully Published!");
+      updateStory();
+    }
+  });
+
+  // This code block will ensure the author page is reloaded after the user saves a draft or publishes
+  $("#successful").on("hidden.bs.modal", function (event) {
+    event.preventDefault();
+    // Location reload will ensure the user sees their submissions on the compose path
+    location.reload();
+  });
+
+  // This click event handler is for deleting a draft or published work from the database
+  $(".deleteButton").on("click", function (event) {
+    event.stopPropagation();
+    $("#deleteModal").modal();
+    var id = $(this).data("id");
+    $(".yesDelete").on("click", function (event) {
+      executeDelete = true;
+      if (executeDelete) {
+
+        $.ajax("/api/compose/" + id, {
+          type: "DELETE"
+        }).then(function () {
+          executeDelete = false;
+          // Location reload to display the change
+          location.reload();
+        }
+        );
+      }
+    });
+  });
+
+  // This click event handler is for updating a draft or published work from the database
+  $(".editButton").on("click", function (event) {
+    event.stopPropagation();
+    $("#updateModal").modal();
+    var id = $(this).data("id");
+    console.log(id);
+    editId.push(id);
+    console.log(editId[0]);
+    $(".yesUpdate").on("click", function (event) {
+
+      $.get("/api/compose/" + id, function (data) {
+        if (data) {
+          $("#titleBox").val(data.title);
+          quill.setContents(JSON.parse(data.storyText));
+          $("#categoryBox").val(data.category);
+          $("#typeBox").val(data.storyType);
+          updatingStory = true;
+        }
+      });
+
+    });
+  });
+
+  //================================MAIN EXECUTIONS END=====================================//
+
+  //=================================HELPER FUNCTIONS=======================================//
+
+  // This function will execute if the story being updated is saved as a draft
+  function updateDraft() {
+    // This line gets the string contents of the editor. Non-string contents are omitted.
+    var quillCharacters = quill.getText().trim();
+    var btnNoSuccess = "Unable to Save Edited Draft!";
+    var btnSuccess = "Succesfully saved your masterpiece as a Draft!";
+    var successBody = "Your changes were saved. You may now close to continue.";
+
+    var story = {
+      id: editId[0],
+      title: $("#titleBox").val(),
+      // This gets the contents of the Quill editor in a Delta format --> https://quilljs.com/docs/delta/
+      // Then we stringify for submission to the database as a string, JSON.parse() will make it back into json object
+      storyText: JSON.stringify(quill.getContents()),
+      category: $("#categoryBox").val(),
+      storyType: $("#typeBox").val(),
+      draft: true
+    };
+
+    if (story.title.length >= 1 && quillCharacters.length >= 100 && story.category.length > 1 && story.storyType.length > 1) {
+      // When the form validation passes the AJAX POST-request will run
+      $.ajax({
+        type: "PUT",
+        url: "/api/compose",
+        data: story
+      })
+        .then(function (data) {
+          console.log(data)
+          editId = [];
+          $("#successTitle").text(btnSuccess);
+          $("#successBody").text(successBody);
+          $("#successful").modal();
+        });
+      // Empty the form after submission
+      // Title cleared
+      $("#titleBox").val("");
+      // Quill editor cleared using setText method from Quill doc
+      quill.setText("");
+      // Category cleared
+      $("#categoryBox").val("");
+      // Type cleared
+      $("#typeBox").val("");
+      // If validation fails for any field, else block runs
+    } else {
+      $("#incompleteFields").empty();
+      $("#notSuccessTitle").text(btnNoSuccess);
+      var fieldHeading = $("<p></p>").text("Please Fix the Following:");
+      var fieldList = $("<ol></ol>");
+      if (story.title.length < 1) {
+        let missingTitle = $("<li></li>").text("Missing Title.");
+        fieldList.append(missingTitle);
+      }
+      if (quillCharacters.length < 100) {
+        let missingCharacters = $("<li></li>").text(quillCharacters.length + " out of 100 minimum characters required.");
+        fieldList.append(missingCharacters);
+      }
+      if (story.category.length < 1) {
+        let missingCategory = $("<li></li>").text("Missing Category.");
+        fieldList.append(missingCategory);
+      }
+      if (story.storyType.length < 1) {
+        let missingType = $("<li></li>").text("Missing Type.");
+        fieldList.append(missingType);
+      }
+      $("#incompleteFields").append(fieldHeading);
+      $("#incompleteFields").append(fieldList);
+      $("#notSuccessful").modal();
+    };
+  };
+
+  // This function will execute if the story being updated is published
+  function updateStory() {
+    // This line gets the string contents of the editor. Non-string contents are omitted.
+    var quillCharacters = quill.getText().trim();
+    var btnNoSuccess = "Unable to Publish Your Updated Masterpiece!";
+    var btnSuccess = "Succesfully Published Your Updated Masterpiece!";
+    var successBody = "Your masterpiece was published along with the updates. You may now close to continue.";
+
+    var story = {
+      id: editId[0],
+      title: $("#titleBox").val(),
+      // This gets the contents of the Quill editor in a Delta format --> https://quilljs.com/docs/delta/
+      // Then we stringify for submission to the database as a string, JSON.parse() will make it back into json object
+      storyText: JSON.stringify(quill.getContents()),
+      category: $("#categoryBox").val(),
+      storyType: $("#typeBox").val(),
+      draft: false
+    };
+
+    if (story.title.length >= 1 && quillCharacters.length >= 100 && story.category.length > 1 && story.storyType.length > 1) {
+      // When the form validation passes the AJAX POST-request will run
+      $.ajax({
+        type: "PUT",
+        url: "/api/compose",
+        data: story
+      })
+        .then(function (data) {
+          console.log(data)
+          editId = [];
+          $("#successTitle").text(btnSuccess);
+          $("#successBody").text(successBody);
+          $("#successful").modal();
+        });
+      // Empty the form after submission
+      // Title cleared
+      $("#titleBox").val("");
+      // Quill editor cleared using setText method from Quill doc
+      quill.setText("");
+      // Category cleared
+      $("#categoryBox").val("");
+      // Type cleared
+      $("#typeBox").val("");
+      // If validation fails for any field, else block runs
+    } else {
+      $("#incompleteFields").empty();
+      $("#notSuccessTitle").text(btnNoSuccess);
+      var fieldHeading = $("<p></p>").text("Please Fix the Following:");
+      var fieldList = $("<ol></ol>");
+      if (story.title.length < 1) {
+        let missingTitle = $("<li></li>").text("Missing Title.");
+        fieldList.append(missingTitle);
+      }
+      if (quillCharacters.length < 100) {
+        let missingCharacters = $("<li></li>").text(quillCharacters.length + " out of 100 minimum characters required.");
+        fieldList.append(missingCharacters);
+      }
+      if (story.category.length < 1) {
+        let missingCategory = $("<li></li>").text("Missing Category.");
+        fieldList.append(missingCategory);
+      }
+      if (story.storyType.length < 1) {
+        let missingType = $("<li></li>").text("Missing Type.");
+        fieldList.append(missingType);
+      }
+      $("#incompleteFields").append(fieldHeading);
+      $("#incompleteFields").append(fieldList);
+      $("#notSuccessful").modal();
+    };
+  };
+
+  function newDraftSubmission() {
     // This line gets the string contents of the editor. Non-string contents are omitted.
     var quillCharacters = quill.getText().trim();
     var btnNoSuccess = "Unable to Save Draft!";
@@ -148,11 +359,9 @@ $(document).ready(function () {
       $("#incompleteFields").append(fieldList);
       $("#notSuccessful").modal();
     };
-  });
+  };
 
-  // This click event handler is for posting a publish to the database
-  $("#publishButton").on("click", function (event) {
-    event.preventDefault();
+  function newPublishSubmission() {
     // This line gets the string contents of the editor. Non-string contents are omitted.
     var quillCharacters = quill.getText().trim();
     var btnNoSuccess = "Unable to Publish Your Masterpiece!";
@@ -212,35 +421,20 @@ $(document).ready(function () {
       $("#incompleteFields").append(fieldHeading);
       $("#incompleteFields").append(fieldList);
       $("#notSuccessful").modal();
-    }
-  });
+    };
+  };
 
-  // This on will ensure the author page is reloaded after the user saves a draft or publishes
-  $("#successful").on("hidden.bs.modal", function (event) {
-    event.preventDefault();
-    // Location reload will ensure the user sees their submissions on the compose path
-    location.reload();
-  });
+  function discardAll() {
+    // Title cleared
+    $("#titleBox").val("");
+    // Quill editor cleared using setText method from Quill doc
+    quill.setText("");
+    // Category cleared
+    $("#categoryBox").val("");
+    // Type cleared
+    $("#typeBox").val("");
+  };
 
-  // This click event handler is for deleting a draft or published work from the database
-  $(".deleteButton").on("click", function (event) {
-    event.stopPropagation();
-    $("#deleteModal").modal();
-    var id = $(this).data("id");
-    $(".yesDelete").on("click", function (event) {
-      executeDelete = true;
-      if (executeDelete === true) {
 
-        $.ajax("/api/compose/" + id, {
-          type: "DELETE"
-        }).then(function () {
-          executeDelete = false;
-          // Location reload to display the change
-          location.reload();
-        }
-        );
-      }
-    });
-  });
 });
 
