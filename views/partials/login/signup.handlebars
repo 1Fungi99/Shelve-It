@@ -1,0 +1,45 @@
+{{!-- Sign Up Modal --}}
+<div class="sign-up modal fade" id="sign-up" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Sign Up for Shelve It!</h5>
+            </div>
+            <div class="modal-body">
+                <!-- To copy the form for Quform, start here -->
+                <!-- Form for the login -->
+                <form class="quform" action="quform/process.php" method="post">
+                    <div class="quform-elements">
+                        First Name:<br>
+                        <div class="quform-input">
+                            <input type='text' name='first-name'><br><br>
+                        </div>
+                        Last Name:<br>
+                        <div class="quform-input">
+                            <input type='text' name='last-name'><br><br>
+                        </div>
+                        Email Address:<br>
+                        <div class="quform-input">
+                            <input type='text' name='email'><br><br>
+                        </div>
+                        Username:<br>
+                        <div class="quform-input">
+                            <input type='text' name='username'><br><br>
+                        </div>
+                        Password:<br>
+                        <div class="quform-input">
+                            <input type='password' name='password'><br><br>
+                            <!--Password is displayed as ******-->
+                        </div>
+                        <button class="btn btn-primary" id='submit'>Sign Up</button>
+                    </div>
+                </form>
+                <!-- To copy the form for Quform, end here -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
