@@ -1,16 +1,20 @@
 // Logic for compose.js path
-$(document).ready(function() {
+$(document).ready(function () {
+
+  // Global Variable when DOM loads, used for deletions of masterpieces
+  var executeDelete = false;
+
   // This var array creates the custom Quill toolbar options
   var toolbarOptions = [
-    ["bold", "italic", "underline", "strike"], // bold, italic, underline, strike buttons
-    [{ list: "ordered" }, { list: "bullet" }], // ordered list & bullet list button
-    [{ script: "sub" }, { script: "super" }], // superscript/subscript buttons
-    [{ indent: "-1" }, { indent: "+1" }], // outdent/indent buttons
-    [{ direction: "rtl" }], // text direction button
-    [{ color: [] }, { background: [] }], // dropdown with defaults from theme
-    [{ font: [] }], // Font type button
-    [{ align: [] }], // Align Button
-    ["clean"] // remove formatting button
+    ['bold', 'italic', 'underline', 'strike'],      // bold, italic, underline, strike buttons
+    [{ 'list': 'ordered' }, { 'list': 'bullet' }],  // ordered list & bullet list button
+    [{ 'script': 'sub' }, { 'script': 'super' }],   // superscript/subscript buttons
+    [{ 'indent': '-1' }, { 'indent': '+1' }],       // outdent/indent buttons
+    [{ 'direction': 'rtl' }],                       // text direction button
+    [{ 'color': [] }, { 'background': [] }],        // dropdown with defaults from theme
+    [{ 'font': [] }],                               // Font type button
+    [{ 'align': [] }],                              // Align Button
+    ['clean'],                                      // remove formatting button
   ];
 
   // This constructor function is for the counter module to be created
@@ -19,8 +23,8 @@ $(document).ready(function() {
       this.quill = quill;
       this.options = options;
       this.container = document.querySelector(options.container);
-      quill.on("text-change", this.update.bind(this));
-      this.update(); // Account for initial contents
+      quill.on('text-change', this.update.bind(this));
+      this.update();  // Account for initial contents
     }
 
     calculate() {
@@ -35,7 +39,7 @@ $(document).ready(function() {
         $("#counterBadge").removeClass("btn-warning");
         $("#counterBadge").addClass("btn-success");
       }
-      if (this.options.unit === "word") {
+      if (this.options.unit === 'word') {
         text = text.trim();
         // Splitting empty text returns a non-empty array
         return text.length > 0 ? text.split(/\s+/).length : 0;
@@ -46,12 +50,12 @@ $(document).ready(function() {
 
     update() {
       var length = this.calculate();
-      this.container.innerText = length;
+      this.container.innerText = length
     }
-  }
+  };
 
   // This line registers the new module created in the constructor function
-  Quill.register("modules/counter", Counter);
+  Quill.register('modules/counter', Counter);
 
   // This creates the Quill editor with the custom modules specified
   var quill = new Quill("#quillContainer", {
@@ -61,14 +65,14 @@ $(document).ready(function() {
     modules: {
       toolbar: toolbarOptions,
       counter: {
-        container: "#quillCounter"
+        container: "#quillCounter",
       }
     }
   });
 
-  // This on click event handler is for the discard button on
+  // This on click event handler is for the discard button on 
   // author tools, executes when user clicks yes on modal
-  $("#yesDiscard").on("click", function(event) {
+  $("#yesDiscard").on("click", function (event) {
     event.preventDefault();
     // Title cleared
     $("#titleBox").val("");
@@ -81,14 +85,13 @@ $(document).ready(function() {
   });
 
   // This click event handler is for saving a draft to the database
-  $("#draftButton").on("click", function(event) {
+  $("#draftButton").on("click", function (event) {
     event.preventDefault();
     // This line gets the string contents of the editor. Non-string contents are omitted.
     var quillCharacters = quill.getText().trim();
     var btnNoSuccess = "Unable to Save Draft!";
     var btnSuccess = "Succesfully Saved Draft!";
-    var successBody =
-      "Your rough draft was saved. You may now close to continue.";
+    var successBody = "Your rough draft was saved. You may now close to continue.";
 
     var story = {
       title: $("#titleBox").val(),
@@ -100,17 +103,12 @@ $(document).ready(function() {
       draft: true
     };
 
-    if (
-      story.title.length >= 1 &&
-      quillCharacters.length >= 100 &&
-      story.category.length > 1 &&
-      story.storyType.length > 1
-    ) {
+    if (story.title.length >= 1 && quillCharacters.length >= 100 && story.category.length > 1 && story.storyType.length > 1) {
       // When the form validation passes the AJAX POST-request will run
       $.post("/api/compose", story)
         // On success a modal pops up alerting of the success
-        .then(function(data) {
-          console.log(data);
+        .then(function (data) {
+          console.log(data)
           $("#successTitle").text(btnSuccess);
           $("#successBody").text(successBody);
           $("#successful").modal();
@@ -135,9 +133,7 @@ $(document).ready(function() {
         fieldList.append(missingTitle);
       }
       if (quillCharacters.length < 100) {
-        let missingCharacters = $("<li></li>").text(
-          quillCharacters.length + " out of 100 minimum characters required."
-        );
+        let missingCharacters = $("<li></li>").text(quillCharacters.length + " out of 100 minimum characters required.");
         fieldList.append(missingCharacters);
       }
       if (story.category.length < 1) {
@@ -151,11 +147,11 @@ $(document).ready(function() {
       $("#incompleteFields").append(fieldHeading);
       $("#incompleteFields").append(fieldList);
       $("#notSuccessful").modal();
-    }
+    };
   });
 
   // This click event handler is for posting a publish to the database
-  $("#publishButton").on("click", function(event) {
+  $("#publishButton").on("click", function (event) {
     event.preventDefault();
     // This line gets the string contents of the editor. Non-string contents are omitted.
     var quillCharacters = quill.getText().trim();
@@ -173,16 +169,11 @@ $(document).ready(function() {
       draft: false
     };
 
-    if (
-      story.title.length >= 1 &&
-      quillCharacters.length >= 100 &&
-      story.category.length > 1 &&
-      story.storyType.length > 1
-    ) {
+    if (story.title.length >= 1 && quillCharacters.length >= 100 && story.category.length > 1 && story.storyType.length > 1) {
       // When the form validation passes the AJAX POST-request will run
       $.post("/api/compose", story)
         // On success a modal pops up alerting of the success
-        .then(function(data) {
+        .then(function (data) {
           $("#successTitle").text(btnSuccess);
           $("#successBody").html(successBody);
           $("#successful").modal();
@@ -207,9 +198,7 @@ $(document).ready(function() {
         fieldList.append(missingTitle);
       }
       if (quillCharacters.length < 100) {
-        let missingCharacters = $("<li></li>").text(
-          quillCharacters.length + " out of 100 minimum characters required."
-        );
+        let missingCharacters = $("<li></li>").text(quillCharacters.length + " out of 100 minimum characters required.");
         fieldList.append(missingCharacters);
       }
       if (story.category.length < 1) {
@@ -227,22 +216,31 @@ $(document).ready(function() {
   });
 
   // This on will ensure the author page is reloaded after the user saves a draft or publishes
-  $("#successful").on("hidden.bs.modal", function(event) {
+  $("#successful").on("hidden.bs.modal", function (event) {
     event.preventDefault();
     // Location reload will ensure the user sees their submissions on the compose path
     location.reload();
   });
 
   // This click event handler is for deleting a draft or published work from the database
-  $(".deleteButton").on("click", function(event) {
+  $(".deleteButton").on("click", function (event) {
     event.stopPropagation();
+    $("#deleteModal").modal();
     var id = $(this).data("id");
+    $(".yesDelete").on("click", function (event) {
+      executeDelete = true;
+      if (executeDelete === true) {
 
-    $.ajax("/api/compose/" + id, {
-      type: "DELETE"
-    }).then(function() {
-      // Location reload to display the change
-      location.reload();
+        $.ajax("/api/compose/" + id, {
+          type: "DELETE"
+        }).then(function () {
+          executeDelete = false;
+          // Location reload to display the change
+          location.reload();
+        }
+        );
+      }
     });
   });
 });
+
