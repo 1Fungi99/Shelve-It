@@ -1,33 +1,37 @@
 <div id="home">
+  <br>
   <div class="container">
     <div class="row">
       <div class="col-8 offset-2">
-        <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
+        <h1>Shelve It!</h1> <!-- Place Holder Header for homepage -->
+        <h2>It's Better Read Than Dead</h2>
         <form class="clearfix mb-4" action="POST">
           <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
-          </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
-          </div>
-          <button id="submit" class="btn btn-primary float-right">Submit</button>
+            <label for="example-text"></label>
         </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
+      </div>
+
+      <button type="button" class="btn btn-dark btn-lg btn-block indexButton">Reader</button>
+      <button type="button" class="btn btn-dark btn-lg btn-block indexButton">Author</button>
+
+      {{!-- {{#each examples}}
           <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
+            <a href="example/{{this.id}}">{{this.username}}</a>
             <button class="btn btn-danger float-right delete">ｘ</button>
           </li>
-          {{/each}}
-        </ul>
-      </div>
+          {{/each}} --}}
+      </ul>
     </div>
   </div>
 </div>
+</div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- Jquery CDN here -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Custom JS link here -->
 <script src="/js/index.js"></script>
+
+<!-- Text CSS -->
+<link href="http://allfont.net/allfont.css?fonts=respess-capitals-excessive" rel="stylesheet" type="text/css" />
+<link href="http://allfont.net/allfont.css?fonts=respess-capitals-light" rel="stylesheet" type="text/css" />

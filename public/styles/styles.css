@@ -1,3 +1,129 @@
 .list-group-item {
   line-height: 2.5;
 }
+
+body {
+  background-image: url('../images/Shelve\ IT\ concept-Recovered.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  
+};
+
+#editor {
+  color: #000000;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Respess Capitals Excessive', arial;
+  font-size: 100px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 40px;
+  font-family: 'Respess Capitals Light', arial;
+}
+
+.indexButton {
+  border: none;
+  display: flex;
+  text-align: center;
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  background-color: #222;
+  padding: 17px 60px;
+  margin-right: 50px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+}
+
+.indexButton span {
+  position: relative; 
+  z-index: 1;
+}
+
+.indexButton:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 490%;
+  width: 140%;
+  background: #ffffff;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.indexButton:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Quill Editor CSS changes Below */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+#editorContainer {
+  height: 60vh;
+}
+
+.ql-container.ql-snow {
+  border: 1px solid #ccc;
+  height: 90%;
+}
+
+/* Tell Quill not to scroll */
+#quillContainer {
+  color: #000000;
+  height: auto;
+  min-height: 100%;
+  padding: 50px;
+}
+
+#quillContainer .ql-editor {
+  font-size: 16px;
+  overflow-y: visible; 
+}
+
+/* This allows CSS styling to the placeholder text in Quill editor */
+.ql-editor.ql-blank::before{
+  padding: 0 0 0 35px;
+}
+
+/* Specify our own scrolling container */
+.card-body {
+  height: 100%;
+  min-height: 100%;
+  overflow-y: auto;
+}
+
+.ql-editor{
+  padding: 12px 0 200px 0;
+}
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Quill Editor CSS changes Above */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Start Reader. JS Editor CSS changes  */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.title {
+  font-weight:bold; 
+}
+
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* End Editor CSS changes Above */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
