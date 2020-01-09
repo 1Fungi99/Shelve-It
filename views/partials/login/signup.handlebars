@@ -1,43 +1,46 @@
 {{!-- Sign Up Modal --}}
 <div class="sign-up modal fade" id="sign-up" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">Sign Up for Shelve It!</h5>
             </div>
             <div class="modal-body">
                 <!-- To copy the form for Quform, start here -->
-                <!-- Form for the login -->
-                <form class="quform" action="quform/process.php" method="post">
-                    <div class="quform-elements">
-                        First Name:<br>
-                        <div class="quform-input">
-                            <input type='text' name='first-name'><br><br>
-                        </div>
-                        Last Name:<br>
-                        <div class="quform-input">
-                            <input type='text' name='last-name'><br><br>
-                        </div>
-                        Email Address:<br>
-                        <div class="quform-input">
-                            <input type='text' name='email'><br><br>
-                        </div>
-                        Username:<br>
-                        <div class="quform-input">
-                            <input type='text' name='username'><br><br>
-                        </div>
-                        Password:<br>
-                        <div class="quform-input">
-                            <input type='password' name='password'><br><br>
+                <!-- Form for the sign up -->
+                <form class="container" id="signup-form">
+                    <div class="row">
+                        <div class="col-sm">
+                            First Name:<br>
+                            <input type='text' id='first-name'><br><br>
+                            Username:<br>
+                            <input type='text' id='username'><br><br>
+                            Password:<br>
+                            <input type='password' id='password'><br><br>
                             <!--Password is displayed as ******-->
+                            <button class="btn btn-secondary" id='signup-show'>Show Password</button>
                         </div>
-                        <button class="btn btn-primary" id='submit'>Sign Up</button>
+                        <div class="col-sm">
+                            Middle Initial:<br>
+                            <input type="text" name="middle_initial" maxlength="1" size="1"><br>
+                        </div>
+                        <div class="col-sm">
+                            Last Name:<br>
+                            <input type='text' id='last-name'><br><br>
+                            Email Address:<br>
+                            <input type='text' id='email'><br><br>
+                            Confirm Password:<br>
+                            <input type='password' id='password-confirm'><br><br>
+                            <!--Password is displayed as ******-->
+                            <button class="btn btn-primary" id='signup-submit'>Sign Up</button>
+                        </div>
                     </div>
                 </form>
                 <!-- To copy the form for Quform, end here -->
             </div>
             <div class="modal-footer">
+                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>

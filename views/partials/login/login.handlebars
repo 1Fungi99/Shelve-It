@@ -10,24 +10,23 @@
             <div class="modal-body">
                 <!-- To copy the form for Quform, start here -->
                 <!-- Form for the login -->
-                <form class="quform" action="quform/process.php" method="post">
-                    <div class="quform-elements">
-                        Username:<br>
-                        <div class="quform-input">
-                            <input type='text' name='username'><br><br>
-                        </div>
-                        Password:<br>
-                        <div class="quform-input">
-                            <input type='password' name='password'><br><br>
-                            <!--Password is displayed as ******-->
-                        </div>
-                        <button class="btn btn-secondary" id='submit'>Log in</button>
-                    </div>
+                <form class="container" id="login-form">
+                    Username:<br>
+                    <input type='text' name='username'><br><br>
+                    Password:<br>
+                    <input type='password' name='password'><br><br>
+                    <!--Password is displayed as ******-->
+                    <button class="btn btn-secondary" id='login-show'>Show Password</button>
+
+                    <button class="btn btn-primary" id='login-submit'>Log in</button>
                 </form>
                 <!-- To copy the form for Quform, end here -->
             </div>
+
             <div class="modal-footer">
+                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
             </div>
         </div>
     </div>

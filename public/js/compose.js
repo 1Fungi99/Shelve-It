@@ -173,7 +173,6 @@ $(document).ready(function() {
       draft: false
     };
 
-<<<<<<< HEAD
     if (
       story.title.length >= 1 &&
       quillCharacters.length >= 100 &&
@@ -184,7 +183,6 @@ $(document).ready(function() {
       $.post("/api/compose", story)
         // On success a modal pops up alerting of the success
         .then(function(data) {
-          console.log(data);
           $("#successTitle").text(btnSuccess);
           $("#successBody").html(successBody);
           $("#successful").modal();
@@ -228,80 +226,23 @@ $(document).ready(function() {
     }
   });
 
-  // Login/signup modals
-  $("#nav_login").on("click", function() {
-    $("#log-in").modal("show");
+  // This on will ensure the author page is reloaded after the user saves a draft or publishes
+  $("#successful").on("hidden.bs.modal", function(event) {
+    event.preventDefault();
+    // Location reload will ensure the user sees their submissions on the compose path
+    location.reload();
   });
 
-  $("#nav_signup").on("click", function() {
-    $("#sign-up").modal("show");
+  // This click event handler is for deleting a draft or published work from the database
+  $(".deleteButton").on("click", function(event) {
+    event.stopPropagation();
+    var id = $(this).data("id");
+
+    $.ajax("/api/compose/" + id, {
+      type: "DELETE"
+    }).then(function() {
+      // Location reload to display the change
+      location.reload();
+    });
   });
-=======
-        if (story.title.length >= 1 && quillCharacters.length >= 100 && story.category.length > 1 && story.storyType.length > 1) {
-            // When the form validation passes the AJAX POST-request will run
-            $.post("/api/compose", story)
-                // On success a modal pops up alerting of the success
-                .then(function (data) {
-                    $("#successTitle").text(btnSuccess);
-                    $("#successBody").html(successBody);
-                    $("#successful").modal();
-                });
-            // Empty the form after submission
-            // Title cleared
-            $("#titleBox").val("");
-            // Quill editor cleared using setText method from Quill doc
-            quill.setText("");
-            // Category cleared
-            $("#categoryBox").val("");
-            // Type cleared
-            $("#typeBox").val("");
-            // If validation fails for any field, else block runs
-        } else {
-            $("#incompleteFields").empty();
-            $("#notSuccessTitle").text(btnNoSuccess);
-            var fieldHeading = $("<p></p>").text("Please Fix the Following:");
-            var fieldList = $("<ol></ol>");
-            if (story.title.length < 1) {
-                let missingTitle = $("<li></li>").text("Missing Title.");
-                fieldList.append(missingTitle);
-            }
-            if (quillCharacters.length < 100) {
-                let missingCharacters = $("<li></li>").text(quillCharacters.length + " out of 100 minimum characters required.");
-                fieldList.append(missingCharacters);
-            }
-            if (story.category.length < 1) {
-                let missingCategory = $("<li></li>").text("Missing Category.");
-                fieldList.append(missingCategory);
-            }
-            if (story.storyType.length < 1) {
-                let missingType = $("<li></li>").text("Missing Type.");
-                fieldList.append(missingType);
-            }
-            $("#incompleteFields").append(fieldHeading);
-            $("#incompleteFields").append(fieldList);
-            $("#notSuccessful").modal();
-        }
-    });
-
-    // This on will ensure the author page is reloaded after the user saves a draft or publishes
-    $("#successful").on("hidden.bs.modal", function (event) {
-        event.preventDefault();
-        // Location reload will ensure the user sees their submissions on the compose path
-        location.reload();
-    });
-
-    // This click event handler is for deleting a draft or published work from the database
-    $(".deleteButton").on("click", function (event) {
-        event.stopPropagation();
-        var id = $(this).data("id");
-
-        $.ajax("/api/compose/" + id, {
-            type: "DELETE"
-        }).then(function () {
-            // Location reload to display the change
-            location.reload();
-        }
-        );
-    });
->>>>>>> 109a97a9ccadbdee727cd9f0c3b2288294d19a60
 });

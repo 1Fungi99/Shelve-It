@@ -28,7 +28,7 @@ This will command your computer to download a `node_modules` folder with all the
 
 - [Heroku](https://www.heroku.com/) - The host provider
 - [Bootstrap](https://getbootstrap.com/) - HTML, CSS and JS library
-- [Quform PHP]()
+- [Google Sign-In](https://developers.google.com/identity/sign-in/web) - Get users into your apps quickly and securely, using a registration system they already use and trust -- their Google account.
 - [Quill Editor](https://quilljs.com/) Quill is a free, open source WYSIWYG editor built for the modern web
 - [Angular.js](https://angularjs.org/)JavaScript-based open-source front-end web framework
 
