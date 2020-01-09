@@ -171,7 +171,6 @@ $(document).ready(function () {
             $.post("/api/compose", story)
                 // On success a modal pops up alerting of the success
                 .then(function (data) {
-                    console.log(data)
                     $("#successTitle").text(btnSuccess);
                     $("#successBody").html(successBody);
                     $("#successful").modal();
@@ -218,6 +217,20 @@ $(document).ready(function () {
         event.preventDefault();
         // Location reload will ensure the user sees their submissions on the compose path
         location.reload();
+    });
+
+    // This click event handler is for deleting a draft or published work from the database
+    $(".deleteButton").on("click", function (event) {
+        event.stopPropagation();
+        var id = $(this).data("id");
+
+        $.ajax("/api/compose/" + id, {
+            type: "DELETE"
+        }).then(function () {
+            // Location reload to display the change
+            location.reload();
+        }
+        );
     });
 });
 

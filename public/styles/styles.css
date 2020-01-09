@@ -27,7 +27,7 @@ h2 {
   font-family: 'Respess Capitals Light', arial;
 }
 
-.btn {
+.indexButton {
   border: none;
   display: flex;
   text-align: center;
@@ -45,12 +45,12 @@ h2 {
   box-shadow: 0 5px 15px rgba(0,0,0,0.20);
 }
 
-.btn span {
+.indexButton span {
   position: relative; 
   z-index: 1;
 }
 
-.btn:after {
+.indexButton:after {
   content: "";
   position: absolute;
   left: 0;
@@ -64,7 +64,7 @@ h2 {
   transform: translateX(-98%) translateY(-25%) rotate(45deg);
 }
 
-.btn:hover:after {
+.indexButton:hover:after {
   -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
   transform: translateX(-9%) translateY(-25%) rotate(45deg);
 }
