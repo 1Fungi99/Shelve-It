@@ -1,6 +1,9 @@
 // Logic for compose.js path
 $(document).ready(function () {
-
+    
+    // Global Variable when DOM loads, used for deletions of masterpieces
+    var executeDelete = false;
+    
     // This var array creates the custom Quill toolbar options
     var toolbarOptions = [
         ['bold', 'italic', 'underline', 'strike'],      // bold, italic, underline, strike buttons
@@ -222,15 +225,22 @@ $(document).ready(function () {
     // This click event handler is for deleting a draft or published work from the database
     $(".deleteButton").on("click", function (event) {
         event.stopPropagation();
+        $("#deleteModal").modal();
         var id = $(this).data("id");
+        $(".yesDelete").on("click", function (event) {
+            executeDelete = true;
+            if (executeDelete === true) {
 
-        $.ajax("/api/compose/" + id, {
-            type: "DELETE"
-        }).then(function () {
-            // Location reload to display the change
-            location.reload();
-        }
-        );
+                $.ajax("/api/compose/" + id, {
+                    type: "DELETE"
+                }).then(function () {
+                    executeDelete = false;
+                    // Location reload to display the change
+                    location.reload();
+                }
+                );
+            }
+        });
     });
 });
 
