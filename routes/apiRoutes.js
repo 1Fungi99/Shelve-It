@@ -82,18 +82,17 @@ module.exports = function(app) {
   // Submitting sign up information
   app.post("/api/new", function(req, res) {
     console.log("Login data collected: " + req.body);
-
-    app.post("/api/signup", function(req, res) {
-      db.User.create(req.body).then(function(dbStory) {
-        res.json(dbStory);
+  });
+  app.post("/api/signup", function(req, res) {
+    db.user
+      .create({
+        pass: req.body.pass,
+        first_name: req.body.first_name,
+        last_name: req.body.last_name,
+        email_address: req.body.email_address
+      })
+      .then(function(dbUser) {
+        res.json(dbUser);
       });
-    });
-    User.create({
-      pass: req.body.pass,
-      fname: req.body.fname,
-      last_name: req.body.last_name,
-      email_address: req.body.email_address,
-      description: req.body.description
-    });
   });
 };

@@ -2,9 +2,6 @@
 // Grabbing the new User model
 // var ajax = require("../../models/user");
 
-// Global Variable for if the user is logged in
-var loggedIn = false;
-
 // ================= Reset Modal Logic Below =================
 // Once modal is closed, all fields reset.
 $("#nav_login").on("click", function() {
@@ -52,29 +49,39 @@ $("#signup-submit").on("click", function() {
       .trim(),
     first_name: $("#firstname").val(),
     last_name: $("#lastname").val(),
-    email_address: $("#email").val()
+    email_address: $("#email")
+      .val()
+      .trim()
   };
+  console.log(newUserData);
+
   if (
     $("#password")
       .val()
       .trim() ===
-    $("#password-confirm")
-      .val()
-      .trim()
+      $("#password-confirm")
+        .val()
+        .trim() &&
+    newUserData.first_name.length < 50 &&
+    newUserData.last_name.length < 50 &&
+    newUserData.email_address.length < 50
   ) {
-    loggedIn = true;
+    console.log("pass");
+    $.ajax({
+      type: "POST",
+      url: "/api/signup",
+      data: newUserData
+    }).then(function(data) {
+      console.log(data);
+      $("#nav_login").addClass("d-none");
+      $("#nav_signup").addClass("d-none");
+      $("#nav_signout").removeClass("d-none");
+      $("#composeLnk").removeClass("d-none");
+      $("#composeDiv").removeClass("d-none");
+      $("#sign-up").modal("hide");
+    });
   }
 });
-
-// ================= Logged in Logic =================
-if (loggedIn) {
-  $("#nav_login").addClass("d-none");
-  $("#nav_signup").addClass("d-none");
-  $("#nav_signout").removeClass("d-none");
-  $("#composeLnk").removeClass("d-none");
-  $("#composeDiv").removeClass("d-none");
-}
-// ================= Logged in Logic =================
 
 // ================= Google Signup/Login Logic Below =================
 
