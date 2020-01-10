@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "1Fungi99",
+    "password": "",
     "database": "shelveit_db",
     "host": "localhost",
     "dialect": "mysql"
@@ -16,6 +16,10 @@
   },
   "production": {
     "use_env_variable": "JAWSDB_URL",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "host": "localhost",
+    "user": "root",
+    "password": "lu9avw254enj27kf",
+    "database": "uhq18sotknmn300b"
   }
 }

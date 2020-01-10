@@ -1,8 +1,6 @@
-import { application } from "express";
-
 // Dependancies
 // Grabbing the new User model
-// var ajax = require("ajax");
+// var ajax = require("../../models/user");
 
 // ================= Reset Modal Logic Below =================
 // Once modal is closed, all fields reset.
@@ -25,6 +23,11 @@ $("#signup-show").on("click", function() {
   } else {
     $("#password")[0].type = "password";
   }
+  if ($("#password-confirm")[0].type == "password") {
+    $("#password-confirm")[0].type = "text";
+  } else {
+    $("#password-confirm")[0].type = "password";
+  }
 });
 $("#login-show").on("click", function() {
   if ($("#password")[0].type == "password") {
@@ -41,27 +44,24 @@ $("#login-submit").on("click", function() {
 
 $("#signup-submit").on("click", function() {
   var newUserData = {
-    username: $("#username").val(),
-    pass: $("#password").val(),
+    pass: $("#password")
+      .val()
+      .trim(),
     first_name: $("#first-name").val(),
-    middle_initial: $("#middle_initial").val(),
     last_name: $("#last-name").val(),
     email_address: $("#email").val()
   };
-  if ($("#passowrd").text() === $("#passowrd-confirm")) {
-    $.ajax({
-      type : "POST",
-      contentType : "application/json",
-      url : window.location + "api/users/save",
-      data : JSON.stringify(formData),
-      dataType : 'json',
-      success : function(customer) {
-        $("#postResultDiv").html("<p>" + 
-          "Post Successfully! <br>" +
-          "--> " + newUserData.first_name + " " + " " + newUserData.middle_initial+ " "+ newUserData.last_name + " " + newUserData.username+ " " + newUserData.password+ " " + newUserData.email_address + ", createdAt: " + customer.createdAt+  "</p>"); 
-      },
-  })
-};
+  if (
+    $("#password")
+      .val()
+      .trim() ===
+    $("#password-confirm")
+      .val()
+      .trim()
+  ) {
+    $.ajax("api/signup", newUserData);
+  }
+});
 
 // ================= Google Signup/Login Logic Below =================
 
