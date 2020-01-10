@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define("User", {
+  var User = sequelize.define("user", {
     pass: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -31,8 +31,8 @@ module.exports = function(sequelize, DataTypes) {
   });
 
   // ====> "Commented out Temporarily to Test Form Submissions to database"- Emir <====
-  // User.associate = function (models) {
-  //   User.hasMany(models.Story, {
+  // user.associate = function (models) {
+  //   user.hasMany(models.Story, {
   //     onDelete: "cascade"
 
   //   });

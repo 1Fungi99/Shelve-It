@@ -2,6 +2,9 @@
 // Grabbing the new User model
 // var ajax = require("../../models/user");
 
+// Global Variable for if the user is logged in
+var loggedIn = false;
+
 // ================= Reset Modal Logic Below =================
 // Once modal is closed, all fields reset.
 $("#nav_login").on("click", function() {
@@ -59,9 +62,19 @@ $("#signup-submit").on("click", function() {
       .val()
       .trim()
   ) {
-    $.ajax("api/signup", newUserData);
+    loggedIn = true;
   }
 });
+
+// ================= Logged in Logic =================
+if (loggedIn) {
+  $("#nav_login").addClass("d-none");
+  $("#nav_signup").addClass("d-none");
+  $("#nav_signout").removeClass("d-none");
+  $("#composeLnk").removeClass("d-none");
+  $("#composeDiv").removeClass("d-none");
+}
+// ================= Logged in Logic =================
 
 // ================= Google Signup/Login Logic Below =================
 

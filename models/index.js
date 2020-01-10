@@ -51,4 +51,8 @@ if (process.env.JAWSDB_URL) {
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+//////////
+db.user = require("../models/user")(sequelize, Sequelize);
+//////////
+
 module.exports = db;
