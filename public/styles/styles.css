@@ -29,7 +29,6 @@ h2 {
 
 .btn {
   border: none;
-  display: flex;
   text-align: center;
   cursor: pointer;
   text-transform: uppercase;
@@ -55,7 +54,7 @@ h2 {
   position: absolute;
   left: 0;
   top: 0;
-  height: 490%;
+  height: 500%;
   width: 140%;
   background: #ffffff;
   -webkit-transition: all .5s ease-in-out;
@@ -68,6 +67,7 @@ h2 {
   -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
   transform: translateX(-9%) translateY(-25%) rotate(45deg);
 }
+
 
 
 
