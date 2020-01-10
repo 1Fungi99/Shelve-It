@@ -11,20 +11,20 @@
                 <!-- To copy the form for Quform, start here -->
                 <!-- Form for the login -->
                 <form class="container" id="login-form">
-                    Username:<br>
-                    <input type='text' name='username'><br><br>
-                    Password:<br>
-                    <input type='password' name='password'><br><br>
+                    <h5> Email Address:</h5>
+                    <input type='text' id="login-email"><br><br>
+                    <h5>Password:</h5>
+                    <input type='password' id="login-password"><br><br>
                     <!--Password is displayed as ******-->
                     <button class="btn btn-secondary" id='login-show' type="button">Show Password</button>
 
-                    <button class="btn btn-primary" id='login-submit' type="submit">Log in</button>
                 </form>
                 <!-- To copy the form for Quform, end here -->
             </div>
 
             <div class="modal-footer">
-                <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+                <button class="btn btn-primary" id='login-submit' type="submit">Log in</button>
+                {{!-- <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div> --}}
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 
             </div>

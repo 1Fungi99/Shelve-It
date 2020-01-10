@@ -79,10 +79,20 @@ module.exports = function(app) {
 
   //============================ Story API Routes ==============================//
 
-  // Submitting sign up information
-  app.post("/api/new", function(req, res) {
-    console.log("Login data collected: " + req.body);
+  app.get("/api/login/:email", function(req, res) {
+    db.user
+      .findOne({
+        where: {
+          email_address: req.params.email
+        }
+      })
+      .then(function(dbUser) {
+        console.log(dbUser.dataValues);
+        res.json(dbUser.dataValues);
+      });
   });
+
+  // Submitting sign up information
   app.post("/api/signup", function(req, res) {
     db.user
       .create({

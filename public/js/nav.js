@@ -1,6 +1,4 @@
 // Dependancies
-// Grabbing the new User model
-// var ajax = require("../../models/user");
 
 // ================= Reset Modal Logic Below =================
 // Once modal is closed, all fields reset.
@@ -30,18 +28,13 @@ $("#signup-show").on("click", function() {
   }
 });
 $("#login-show").on("click", function() {
-  if ($("#password")[0].type == "password") {
-    $("#password")[0].type = "text";
+  if ($("#login-password")[0].type == "password") {
+    $("#login-password")[0].type = "text";
   } else {
-    $("#password")[0].type = "password";
+    $("#login-password")[0].type = "password";
   }
 });
 // ================= Show Password Logic Above =================
-
-$("#login-submit").on("click", function() {
-  $;
-});
-
 $("#signup-submit").on("click", function() {
   var newUserData = {
     pass: $("#password")
@@ -89,22 +82,30 @@ $("#signup-submit").on("click", function() {
     });
   }
 });
-// ================= Sign Up Logic Below =================
+// ================= Sign Up Logic Above =================
 
-// ================= Google Signup/Login Logic Below =================
+// ================= Log In Logic Below =================
+$("#login-submit").on("click", function() {
+  var email = $("#login-email")
+    .val()
+    .trim();
+  var password = $("#login-password")
+    .val()
+    .trim();
 
-function onSignIn(googleUser) {
-  // Useful data for your client-side scripts:
-  var profile = googleUser.getBasicProfile();
-  console.log("ID: " + profile.getId()); // Don't send this directly to your server!
-  console.log("Full Name: " + profile.getName());
-  console.log("Given Name: " + profile.getGivenName());
-  console.log("Family Name: " + profile.getFamilyName());
-  console.log("Image URL: " + profile.getImageUrl());
-  console.log("Email: " + profile.getEmail());
-
-  // The ID token you need to pass to your backend:
-  var id_token = googleUser.getAuthResponse().id_token;
-  console.log("ID Token: " + id_token);
-}
-// ================= Google Signup/Login Logic Above =================
+  $.get("/api/login/" + email, function(data) {
+    if (data) {
+      var logInUser = data;
+      if (logInUser.pass === password) {
+        $("#nav_login").addClass("d-none");
+        $("#nav_signup").addClass("d-none");
+        $("#nav_signout").removeClass("d-none");
+        $("#composeLnk").removeClass("d-none");
+        $("#composeDiv").removeClass("d-none");
+        $("#log-in").modal("hide");
+      } else {
+      }
+    }
+  });
+});
+// ================= Log In Logic Above =================
