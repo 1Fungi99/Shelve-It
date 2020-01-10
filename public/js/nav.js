@@ -50,8 +50,8 @@ $("#signup-submit").on("click", function() {
     pass: $("#password")
       .val()
       .trim(),
-    first_name: $("#first-name").val(),
-    last_name: $("#last-name").val(),
+    first_name: $("#firstname").val(),
+    last_name: $("#lastname").val(),
     email_address: $("#email").val()
   };
   if (
