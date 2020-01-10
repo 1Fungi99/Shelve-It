@@ -3,13 +3,12 @@
 }
 
 body {
-  background-image: url('../images/Shelve\ IT\ concept-Recovered.png');
+  background-image: url("../images/Shelve\ IT\ concept-Recovered.png");
   background-repeat: no-repeat;
   background-position: center;
   background-attachment: fixed;
   background-size: 100% 100%;
-  
-};
+}
 
 #editor {
   color: #000000;
@@ -17,17 +16,17 @@ body {
 
 h1 {
   text-align: center;
-  font-family: 'Respess Capitals Excessive', arial;
+  font-family: "Respess Capitals Excessive", arial;
   font-size: 100px;
 }
 
 h2 {
   text-align: center;
   font-size: 40px;
-  font-family: 'Respess Capitals Light', arial;
+  font-family: "Respess Capitals Light", arial;
 }
 
-.btn {
+.indexButton {
   border: none;
   text-align: center;
   cursor: pointer;
@@ -41,15 +40,15 @@ h2 {
   background-color: #222;
   padding: 17px 60px;
   margin-right: 50px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-.btn span {
-  position: relative; 
+.indexButton span {
+  position: relative;
   z-index: 1;
 }
 
-.btn:after {
+.indexButton:after {
   content: "";
   position: absolute;
   left: 0;
@@ -57,20 +56,23 @@ h2 {
   height: 500%;
   width: 140%;
   background: #ffffff;
-  -webkit-transition: all .5s ease-in-out;
-  transition: all .5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
   transform: translateX(-98%) translateY(-25%) rotate(45deg);
 }
 
-.btn:hover:after {
+.indexButton:hover:after {
   -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
   transform: translateX(-9%) translateY(-25%) rotate(45deg);
 }
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> daee8a783e8869a1842e23793df9e591d5744803
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* Quill Editor CSS changes Below */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -94,11 +96,11 @@ h2 {
 
 #quillContainer .ql-editor {
   font-size: 16px;
-  overflow-y: visible; 
+  overflow-y: visible;
 }
 
 /* This allows CSS styling to the placeholder text in Quill editor */
-.ql-editor.ql-blank::before{
+.ql-editor.ql-blank::before {
   padding: 0 0 0 35px;
 }
 
@@ -109,9 +111,20 @@ h2 {
   overflow-y: auto;
 }
 
-.ql-editor{
+.ql-editor {
   padding: 12px 0 200px 0;
 }
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* Quill Editor CSS changes Above */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* Start Reader. JS Editor CSS changes  */
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+.title {
+  font-weight: bold;
+}
+
+/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+/* End Editor CSS changes Above */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */

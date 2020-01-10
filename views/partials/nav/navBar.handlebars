@@ -23,8 +23,8 @@
                     aria-haspopup="true" aria-expanded="false"><i class="far fa-user-circle fa-lg"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Sign-In</a>
-                    <a class="dropdown-item" href="#">Sign-Up</a>
+                    <a class="dropdown-item" id="nav_login" href="#">Log In</a>
+                    <a class="dropdown-item" id="nav_signup" href="#">Sign Up</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/compose">Compose <i class="fas fa-feather-alt"></i></a>
                 </div>
@@ -32,3 +32,15 @@
         </ul>
     </div>
 </nav>
+
+<!-- Using handlebars partials directory to display the modals -->
+{{> login/login}}
+{{> login/signup}}
+
+<!-- Jquery CDN here -->
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<!-- Custom JS link for compose path -->
+<script src="/js/nav.js" type="text/javascript"></script>
+<!-- Google Platform Library -->
+<script src="https://apis.google.com/js/platform.js" async defer></script>
