@@ -55,6 +55,7 @@ $("#signup-submit").on("click", function() {
   };
   console.log(newUserData);
 
+  // Checking to see if the passwords match before sending to database
   if (
     $("#password")
       .val()
@@ -62,9 +63,15 @@ $("#signup-submit").on("click", function() {
       $("#password-confirm")
         .val()
         .trim() &&
+    // Validation of the first name length
     newUserData.first_name.length < 50 &&
+    newUserData.first_name.length > 2 &&
+    // Validation of the last name length
     newUserData.last_name.length < 50 &&
-    newUserData.email_address.length < 50
+    newUserData.last_name.length > 2 &&
+    // Validation of the email address length
+    newUserData.email_address.length < 50 &&
+    newUserData.email_address.length > 10
   ) {
     console.log("pass");
     $.ajax({
@@ -82,6 +89,7 @@ $("#signup-submit").on("click", function() {
     });
   }
 });
+// ================= Sign Up Logic Below =================
 
 // ================= Google Signup/Login Logic Below =================
 
