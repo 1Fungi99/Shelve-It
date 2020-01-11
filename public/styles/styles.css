@@ -28,7 +28,6 @@ h2 {
 
 .indexButton {
   border: none;
-  display: flex;
   text-align: center;
   cursor: pointer;
   text-transform: uppercase;
@@ -57,11 +56,11 @@ a {
   position: absolute;
   left: 0;
   top: 0;
-  height: 490%;
-  width: 140%;
+  height: 500%;
+  width: 350%;
   background: #ffffff;
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 2.5s ease-in-out;
+  transition: all 1.5s ease-in-out;
   -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
   transform: translateX(-98%) translateY(-25%) rotate(45deg);
 }
@@ -69,6 +68,13 @@ a {
 .indexButton:hover:after {
   -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
   transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+.button_container {
+  position: absolute;
+  left: 35%;
+  right: 35%;
+  top: 40%;
 }
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
