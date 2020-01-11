@@ -35,6 +35,9 @@ $("#login-show").on("click", function() {
   }
 });
 // ================= Show Password Logic Above =================
+
+// ================= Sign Up Logic Below =================
+
 $("#signup-submit").on("click", function() {
   var newUserData = {
     pass: $("#password")
@@ -74,12 +77,15 @@ $("#signup-submit").on("click", function() {
     }).then(function(data) {
       console.log(data);
       $("#nav_login").addClass("d-none");
+      $("#composeDiv1").addClass("d-none");
       $("#nav_signup").addClass("d-none");
       $("#nav_signout").removeClass("d-none");
       $("#composeLnk").removeClass("d-none");
-      $("#composeDiv").removeClass("d-none");
+      $("#composeDiv2").removeClass("d-none");
       $("#sign-up").modal("hide");
     });
+  } else {
+    $("#signup-alert").removeClass("d-none");
   }
 });
 // ================= Sign Up Logic Above =================
@@ -98,12 +104,14 @@ $("#login-submit").on("click", function() {
       var logInUser = data;
       if (logInUser.pass === password) {
         $("#nav_login").addClass("d-none");
+        $("#composeDiv1").addClass("d-none");
         $("#nav_signup").addClass("d-none");
         $("#nav_signout").removeClass("d-none");
         $("#composeLnk").removeClass("d-none");
-        $("#composeDiv").removeClass("d-none");
+        $("#composeDiv2").removeClass("d-none");
         $("#log-in").modal("hide");
       } else {
+        $("#login-alert").removeClass("d-none");
       }
     }
   });
