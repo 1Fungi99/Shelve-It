@@ -1,4 +1,6 @@
 <div id="home">
+  <video autoplay muted>
+    <source src="../BurningTransition.mp4"></video>
   <br>
   <div class="container">
     <div class="row">
@@ -6,11 +8,14 @@
         <h1>Shelve It!</h1> <!-- Place Holder Header for homepage -->
         <h2>It's Better Read Than Dead</h2>
       </div>
-
-      <button type="button" class="btn btn-dark btn-lg btn-block indexButton"><a href="/stories">Reader</a></button>
-      <button type="button" class="btn btn-dark btn-lg btn-block indexButton"><a href="/compose">Author</a></button>
-
-
+      <div class="button_container">
+        <a class="buttonAnchors" href="/stories"><button type="button"
+            class="btn btn-dark btn-lg btn-block indexButton">Wanna read something?</button></a>
+        <br>
+        <!-- This button only shows up when the user signs-up/signs-in -->
+        <a class="buttonAnchors" href="/compose"><button type="button"
+            class="btn btn-dark btn-lg btn-block indexButton d-none">Author</button></a>
+      </div>
       </ul>
     </div>
   </div>
@@ -22,7 +27,3 @@
   integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <!-- Custom JS link here -->
 <script src="/js/index.js"></script>
-
-<!-- Text CSS -->
-<link href="http://allfont.net/allfont.css?fonts=respess-capitals-excessive" rel="stylesheet" type="text/css" />
-<link href="http://allfont.net/allfont.css?fonts=respess-capitals-light" rel="stylesheet" type="text/css" />
