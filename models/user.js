@@ -1,9 +1,10 @@
 module.exports = function(sequelize, DataTypes) {
-  var User = sequelize.define("User", {
-    username: {
+  var User = sequelize.define("user", {
+    first_name: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        len: [1, 50]
+        len: [2, 50]
       }
     },
     pass: {
@@ -13,46 +14,25 @@ module.exports = function(sequelize, DataTypes) {
         len: [1, 50]
       }
     },
-    first_name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        len: [1, 50]
-      }
-    },
-    middle_initial: {
-      type: DataTypes.STRING,
-      validate: {
-        len: [1]
-      },
-      allowNull: true
-    },
     last_name: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [1, 50]
+        len: [2, 50]
       }
     },
     email_address: {
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [1, 50]
-      }
-    },
-    description: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-      validate: {
-        len: [1, 2000]
+        len: [10, 50]
       }
     }
   });
 
   // ====> "Commented out Temporarily to Test Form Submissions to database"- Emir <====
-  // User.associate = function (models) {
-  //   User.hasMany(models.Story, {
+  // user.associate = function (models) {
+  //   user.hasMany(models.Story, {
   //     onDelete: "cascade"
 
   //   });

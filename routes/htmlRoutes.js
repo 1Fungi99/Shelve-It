@@ -3,9 +3,8 @@ var db = require("../models");
 module.exports = function (app) {
   // Load home page
   app.get("/", function (req, res) {
-    db.User.findAll({}).then(function (data) {
-      res.render("index", {
-      });
+    db.user.findAll({}).then(function (data) {
+      res.render("index", {});
     });
   });
 
@@ -19,15 +18,18 @@ module.exports = function (app) {
   });
 
   //Load Reader page for user
-  app.get("/reader", function (req, res) {
+  app.get("/stories", function (req, res) {
     res.render("reader", {
       msg: "Reader Homepage"
     });
   });
 
+  // app.get("/about-us", function(req, res) {
+  //   res.render("about-us");
+  // });
+
   // Render 404 page for any unmatched routes
   app.get("*", function (req, res) {
     res.render("404");
   });
-
 };
