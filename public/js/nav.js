@@ -38,6 +38,7 @@ $("#login-show").on("click", function() {
 
 $("#signup-submit").on("click", function() {
   var match = false;
+  $("#match-error").addClass("d-none");
 
   var newUserData = {
     pass: $("#password")
@@ -98,6 +99,8 @@ $("#signup-submit").on("click", function() {
         $("#nav_signout").removeClass("d-none");
         $("#composeLnk").removeClass("d-none");
         $("#composeDiv2").removeClass("d-none");
+        $("#index-author-button").removeClass("d-none");
+
         $("#sign-up").modal("hide");
       });
     } else {
@@ -127,7 +130,10 @@ $("#login-submit").on("click", function() {
         $("#nav_signout").removeClass("d-none");
         $("#composeLnk").removeClass("d-none");
         $("#composeDiv2").removeClass("d-none");
+        $("#index-author-button").removeClass("d-none");
+
         $("#log-in").modal("hide");
+
         user = logInUser;
       } else {
         $("#login-alert").removeClass("d-none");
