@@ -27,6 +27,11 @@ module.exports = function(sequelize, DataTypes) {
       validate: {
         len: [10, 50]
       }
+    },
+    logged_in: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true
     }
   });
 
