@@ -28,7 +28,7 @@
                             </div>
                             <ul>
                                 {{#each stories}}
-
+                                {{#unless draft}}
 
                                 <p style="color:grey;">
                                     <span style="font-weight:bold;">{{this.id}}. {{this.title}}</span><br><span
@@ -40,7 +40,7 @@
                                     {{this.storyText}}
 
                                 </p>
-
+                                {{/unless}}
                                 {{/each}}
                             </ul>
                         </div>
