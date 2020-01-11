@@ -77,7 +77,7 @@ a {
   top: 35%;
 }
 
-#loader{
+/* #loader{
   height: 1500px;
   width: 1500px;
   background-color: #E7808B;
@@ -96,7 +96,7 @@ a {
   top: 50%;
   left: 50%;
   transform: translate(-50%,-50%);
-}
+} */
 
 .buttonAnchors:hover {
   text-decoration: none;
