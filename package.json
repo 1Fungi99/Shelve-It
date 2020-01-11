@@ -1,7 +1,7 @@
 {
-  "name": "mysql",
+  "name": "shelveit",
   "version": "1.0.0",
-  "description": "Project 2 Starter",
+  "description": "Collaborating Project with Emir, Justin, Hibah, Jhayla",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
