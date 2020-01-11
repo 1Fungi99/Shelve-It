@@ -27,10 +27,6 @@ module.exports = function (sequelize, DataTypes) {
       type: DataTypes.STRING,
       defaultValue: "English" // "Current build is only for English, default value is English"- Emir
     },
-    author: {
-      type: DataTypes.STRING,
-      defaultValue: "Anonymous" // "Need to figure out how to have the defaultValue be the User after they log in"- Emir
-    },
     draft: { // "This will default to true everytime a new story is saved as draft, will be false if story is published" - Emir
       type: DataTypes.BOOLEAN,
       defaultValue: true,
