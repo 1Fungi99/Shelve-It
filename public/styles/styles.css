@@ -57,10 +57,10 @@ a {
   left: 0;
   top: 0;
   height: 500%;
-  width: 140%;
+  width: 350%;
   background: #ffffff;
-  -webkit-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
+  -webkit-transition: all 2.5s ease-in-out;
+  transition: all 1.5s ease-in-out;
   -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
   transform: translateX(-98%) translateY(-25%) rotate(45deg);
 }
@@ -70,12 +70,13 @@ a {
   transform: translateX(-9%) translateY(-25%) rotate(45deg);
 }
 
-<<<<<<< HEAD
+.button_container {
+  position: absolute;
+  left: 35%;
+  right: 35%;
+  top: 40%;
+}
 
-
-
-=======
->>>>>>> daee8a783e8869a1842e23793df9e591d5744803
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* Quill Editor CSS changes Below */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
