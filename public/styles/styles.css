@@ -59,7 +59,7 @@ a {
   height: 500%;
   width: 350%;
   background: #ffffff;
-  -webkit-transition: all 2.5s ease-in-out;
+  -webkit-transition: all 0.5s ease-in-out;
   transition: all 1.5s ease-in-out;
   -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
   transform: translateX(-98%) translateY(-25%) rotate(45deg);
@@ -74,9 +74,26 @@ a {
   position: absolute;
   left: 35%;
   right: 35%;
-  top: 50%;
+  top: 35%;
 }
 
+#loader{
+  height: 1500px;
+  width: 1500px;
+  background-color: #E7808B;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
+
+#loader img{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  
 .buttonAnchors:hover {
   text-decoration: none;
 }
