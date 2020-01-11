@@ -46,7 +46,7 @@ function ReaderPage(NYTData) {
     console.log(NYTData.items);
     console.log("------------------------------------");
     var bookDeets = $("#book-list");
-    for (i = 0; i < 5; i++) {
+    for (i = 0; i < 1; i++) {
         j = i + 1;
         var bookName = NYTData.items[i].volumeInfo.title;
         var author = NYTData.items[i].volumeInfo.authors[0];
@@ -56,15 +56,11 @@ function ReaderPage(NYTData) {
         var ratingsCount = NYTData.items[i].volumeInfo.ratingsCount;
         var language = NYTData.items[i].volumeInfo.language;
         var catergory = NYTData.items[i].volumeInfo.categories[0];
-        // var image = NYTData.items[i].volumeInfo.imageLinks.smallThumbnail;
+        var image = NYTData.items[i].volumeInfo.imageLinks.smallThumbnail;
         var bookImage = $("<img>").attr("src", NYTData.items[i].volumeInfo.imageLinks[0]);
 
 
         bookDeets.append("<h4>" + "Result# " + j + "<h4>");
-        bookDeets.append(
-            "<p id=bookTitle><span class='title'>Image</span> <br>" + bookImage +
-            "</p>"
-        );
         bookDeets.append(
             "<p id=bookTitle><span class='title'>Book Title</span> <br>" + bookName +
             "</p>"
@@ -89,6 +85,9 @@ function ReaderPage(NYTData) {
             "<p id=lang><span class='title'>Language</span> <br>" + language +
             "</p>"
         );
+        bookDeets.append(
+            "<img src='" + image + "'alt=result image>"
+        );
 
 
 
@@ -99,8 +98,6 @@ function ReaderPage(NYTData) {
         console.log(pageCount);
         console.log(language);
         console.log(catergory);
-        $("#book-list").append(bookName);
-        $("#book-list").append(author);
     }
 }
 var posts;
