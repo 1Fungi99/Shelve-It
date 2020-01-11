@@ -1,20 +1,20 @@
-
-
-
-
 var $submitSearch = $("#submitbtn");
 //functions on click events 
 var readerFormSubmit = function (event) {
     event.preventDefault();
+
+
     // alert("working");
     // console.log(event);
     var bookSearch = $("#search-text").val().trim();
     console.log(bookSearch);
+    //$("#book-list").clear();
     readerSearch(bookSearch);
 
 };
 
 function readerSearch(bookSearch) {
+
     var title = bookSearch.replace(/\s/g, "");
     // var queryURL = "https://api.nytimes.com/svc/books/v3/reviews.json?title=" + title + "&api-key=BwzMGxksC3PFgbaSEvPtOG3LtWYkf8Tk";
 
@@ -101,7 +101,6 @@ function ReaderPage(NYTData) {
         console.log(catergory);
         $("#book-list").append(bookName);
         $("#book-list").append(author);
-
     }
 }
 var posts;

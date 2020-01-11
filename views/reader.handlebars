@@ -6,7 +6,7 @@
                 {{!-- <h2> Readers page</h2> --}}
                 <form class="clearfix mb-4" action="POST">
                     <div class="form-group">
-                        <label for="search-text">Search by Book</label>
+                        <label for="search-text">Search by Book Title</label>
                         <input type="text" id="search-text" class="form-control" aria-describedby="search-text"
                             placeholder="Enter search Text">
                     </div>
@@ -29,13 +29,17 @@
                             <ul>
                                 {{#each stories}}
 
-                                <li>
-                                    <p style="color:grey;">
-                                        {{this.id}}.{{this.title}} <br> {{this.catergory}} {{this.story}}
-                                        {{this.author}}
 
-                                    </p>
-                                </li>
+                                <p style="color:grey;">
+                                    <span style="font-weight:bold;">{{this.id}}. {{this.title}}</span><br><span
+                                        style="font-weight:bold;">Author:</span>
+                                    {{this.author}} <br><span style="font-weight:bold;">Catergory:</span>
+                                    {{this.category}}
+                                    <br>
+                                    <span style="font-weight:bold;">{{this.storyType}}</span> <br>
+                                    {{this.storyText}}
+
+                                </p>
 
                                 {{/each}}
                             </ul>
