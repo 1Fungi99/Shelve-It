@@ -30,7 +30,6 @@ h2 {
   border: none;
   text-align: center;
   cursor: pointer;
-  text-transform: uppercase;
   outline: none;
   overflow: hidden;
   position: relative;
@@ -42,6 +41,7 @@ h2 {
   margin-right: 50px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
+
 a {
   color: #fff; 
   border:none; 
@@ -127,7 +127,7 @@ a {
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
-/* Start Reader. JS Editor CSS changes  */
+/* Start Reader. JS Editor CSS changes Below */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 .title {
   font-weight: bold;
