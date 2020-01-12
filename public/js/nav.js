@@ -1,7 +1,7 @@
 $(document).ready(function() {
   console.log("ready!");
-  // var logged_in = false;
-  var logged_in_user;
+  var provider = new firebase.auth.GoogleAuthProvider();
+  var user = firebase.auth().currentUser;
 
   // ================= Reset Modal Logic Below =================
   // Once modal is closed, all fields reset.
@@ -61,7 +61,6 @@ $(document).ready(function() {
       // .then(function (data) {
       console.log(data);
       if (data) {
-        console.log(data);
         if (
           data.email_address ==
           $("#email")
@@ -97,30 +96,33 @@ $(document).ready(function() {
           url: "/api/signup",
           data: newUserData
         }).then(function(data) {
-          console.log(data);
-          $("#nav_login").addClass("d-none");
-          $("#composeDiv1").addClass("d-none");
-          $("#nav_signup").addClass("d-none");
-          $("#nav_signout").removeClass("d-none");
-          $("#composeLnk").removeClass("d-none");
-          $("#composeDiv2").removeClass("d-none");
-          $("#index-author-button").removeClass("d-none");
+          // console.log(data);
 
           $("#sign-up").modal("hide");
-
-          //pulling email for sign out
-          logged_in_user = newUserData.email_address;
-          console.log(logged_in_user);
+          user
+            .updateProfile({
+              displayName: newUserData.first_name + " " + newUserData.last_name
+            })
+            .then(function() {
+              // Update successful.
+            });
+          console.log(email + " and " + password);
         });
       } else {
         $("#signup-alert").removeClass("d-none");
       }
     });
   });
+
   // ================= Sign Up Logic Above =================
 
+  //calls function to popup
+  $("#google-signup").on("click", function() {
+    googleSignIn();
+  });
   // ================= Log In Logic Below =================
   $("#login-submit").on("click", function() {
+    //grabs input fields
     var email = $("#login-email")
       .val()
       .trim();
@@ -130,22 +132,10 @@ $(document).ready(function() {
 
     $.get("/api/login/" + email, function(data) {
       if (data) {
-        var logInUser = data;
-        console.log(logInUser);
-        if (logInUser.pass === password) {
-          $("#nav_login").addClass("d-none");
-          $("#composeDiv1").addClass("d-none");
-          $("#nav_signup").addClass("d-none");
-          $("#nav_signout").removeClass("d-none");
-          $("#composeLnk").removeClass("d-none");
-          $("#composeDiv2").removeClass("d-none");
-          $("#index-author-button").removeClass("d-none");
-
+        if (data.pass === password) {
+          // auth for log ins, sent to firebase
+          firebase.auth().signInWithEmailAndPassword(email, password);
           $("#log-in").modal("hide");
-
-          //pulling email for sign out
-          logged_in_user = email;
-          console.log(logged_in_user);
         } else {
           $("#login-alert").removeClass("d-none");
         }
@@ -155,14 +145,82 @@ $(document).ready(function() {
   // ================= Log In Logic Above ================
 
   // ================= Sign Out Logic Above ================
+  //sends firebase data that the user has signed out
+  //UI should reflect as such
   $("#nav_signout").on("click", function() {
-    $("#nav_login").removeClass("d-none");
-    $("#composeDiv1").removeClass("d-none");
-    $("#nav_signup").removeClass("d-none");
-    $("#nav_signout").addClass("d-none");
-    $("#composeLnk").addClass("d-none");
-    $("#composeDiv2").addClass("d-none");
-    $("#index-author-button").addClass("d-none");
+    firebase.auth().signOut();
   });
   // ================= Sign Out Logic Above ================
+
+  // changes UI when the authentication for the window is changed
+  window.onload = function() {
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (user) {
+        console.log("User is signed in! Data below:");
+        console.log(user);
+
+        // User is signed in.
+        // console logs user information
+
+        var displayName = user.displayName;
+        var email = user.email;
+        var emailVerified = user.emailVerified;
+        var photoURL = user.photoURL;
+        var isAnonymous = user.isAnonymous;
+        var uid = user.uid;
+        var providerData = user.providerData;
+
+        // Revising UI for log in
+
+        $("#nav_login").addClass("d-none");
+        $("#composeDiv1").addClass("d-none");
+        $("#nav_signup").addClass("d-none");
+        $("#nav_signout").removeClass("d-none");
+        $("#composeLnk").removeClass("d-none");
+        $("#composeDiv2").removeClass("d-none");
+        $("#index-author-button").removeClass("d-none");
+        $("#google-signup").addClass("d-none");
+
+        //Setting
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
+      } else {
+        // User is signed out.
+        // Revising UI for sign out
+
+        console.log("User is signed out.");
+        $("#nav_login").removeClass("d-none");
+        $("#composeDiv1").removeClass("d-none");
+        $("#nav_signup").removeClass("d-none");
+        $("#nav_signout").addClass("d-none");
+        $("#composeLnk").addClass("d-none");
+        $("#composeDiv2").addClass("d-none");
+        $("#index-author-button").addClass("d-none");
+        $("#google-signup").removeClass("d-none");
+      }
+    });
+  };
+
+  //Helper Functions:
+
+  // Google sign in function
+  function googleSignIn() {
+    firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then(function(result) {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        var token = result.credential.accessToken;
+        // The signed-in user info.
+        var user = result.user;
+      })
+      .catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+        // The email of the user's account used.
+        var email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        var credential = error.credential;
+      });
+  }
 });
