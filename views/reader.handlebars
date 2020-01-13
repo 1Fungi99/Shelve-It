@@ -1,75 +1,119 @@
 <div id="home">
-    <div class="container">
+    <br>
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-8 offset-2">
-                <h1>{{msg}}</h1>
-                {{!-- <h2> Readers page</h2> --}}
-                <form class="clearfix mb-4" action="POST">
-                    <div class="form-group">
-                        <label for="search-text">Search by Book Title</label>
-                        <input type="text" id="search-text" class="form-control" aria-describedby="search-text"
-                            placeholder="Enter search Text">
+            <div class="col-md-3">
+                <div class="card text-center text-white bg-dark mb-3">
+                    <div class="card-header border-light">
+                        <h1>Book Shelf</h1>
                     </div>
-
-                    <button id="submitbtn" class="btn btn-primary float-right">Submit</button>
-                </form>
-
-
-                <!--Trending stories Shelve-It -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <br>
-                        <div class="card">
-                            <div class="card-header">
-                                <strong>
-                                    <i class="fa fa-table"></i> Author Stories </strong>
-                            </div>
-                            <div class="card-body" id="story-list">
-                            </div>
-                            <ul>
-                                {{#each stories}}
-                                {{#unless draft}}
-
-                                <p style="color:grey;">
-                                    <span style="font-weight:bold;">{{this.id}}. {{this.title}}</span><br><span
-                                        style="font-weight:bold;">Author:</span>
-                                    {{this.author}} <br><span style="font-weight:bold;">Catergory:</span>
-                                    {{this.category}}
-                                    <br>
-                                    <span style="font-weight:bold;">{{this.storyType}}</span> <br>
-                                    {{this.storyText}}
-
-                                </p>
-                                {{/unless}}
-                                {{/each}}
-                            </ul>
-                        </div>
+                    <div class="card-footer text-muted border-light">
+                        All these masterpieces are made by people just like you. Go ahead and pull one off the shelf.
+                    </div>
+                    <!--Trending stories Shelve-It -->
+                    <br>
+                    <div class="card-body">
+                        {{#each stories}}
+                        {{#unless draft}}
+                        {{> author/userMasterpieces}}
+                        {{/unless}}
+                        {{/each}}
                     </div>
                 </div>
-
-                <!-- Search result section -->
-                <div class="row">
-                    <div class="col-sm-12">
-                        <br>
-                        <div class="card">
-                            <div class="card-header">
-                                <strong>
-                                    <i class="fa fa-table"></i> Searches</strong>
-                            </div>
-                            <div class="card-body" id="book-list">
+                <br>
+                <div class="card text-center text-white bg-dark mb-3">
+                    <div class="card-header border-light">
+                        <h1>Search</h1>
+                    </div>
+                    <div class="card-footer text-muted border-light">
+                        Search for existing books by title.
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            <form class="clearfix mb-4" action="POST">
+                                <div class="form-group">
+                                    <input type="text" id="search-text" class="form-control"
+                                        aria-describedby="search-text" placeholder="Book Title">
+                                </div>
+                                <button id="submitbtn" class="btn btn-primary float-right">Submit</button>
+                            </form>
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
+                    <br>
+                    <!-- Search result section -->
+                    <div class="row" style="color: #000000">
+                        <div class="col-sm-12">
+                            <br>
+                            <div class="card">
+                                <div class="card-header">
+                                    <strong>
+                                        <i class="fa fa-table"></i> Searches</strong>
+                                </div>
+                                <div class="card-body" id="book-list">
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
+            </div>
+            <div class="col-md-9">
+                <div class="card text-center text-white bg-dark mb-3">
+                    <div class="card-header border-light">
+                        <h1>Enjoy</h1>
+                    </div>
+                    <div class="card-footer text-muted border-light">
+                        Get comfortable, you are in for a good time.
+                    </div>
+                    <div class="container-fluid">
+                        {{#each stories}}
+                        {{#unless draft}}
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-10">
+                                <div class="card bg-light mb-3 collapse number{{this.id}}">
+                                    <div class="card-body" id="story-list">
+                                    </div>
+                                    <div style="color:#000000">
+                                        <span>{{title}}</span>
+                                        <br>
+                                        <span>Category: {{category}}</span>
+                                        <br>
+                                        <span>Type: {{storyType}}</span>
+                                        <br>
+                                        <div class="card bg-light mb-3">
+                                            <div class="card-body quillScroller{{this.id}}">
+                                                <div class="quillReader{{this.id}}"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-1"></div>
+                        </div>
+                        {{/unless}}
+                        {{/each}}
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
-<!-- Jquery CDN here -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<!-- Custom JS link here -->
-<script src="/js/reader.js"></script>
-<script src="/js/nav.js"></script>
+        <!-- styling for Quill only on this path -->
+        <style>
+            .ql-container {
+                font-size: 16px;
+            }
+
+            .ql-editor {
+                padding-right: 12px;
+                padding-left: 12px;
+            }
+        </style>
+
+        <!-- Jquery CDN here -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <!-- Custom JS link here -->
+        <script src="/js/reader.js"></script>
+        <script src="/js/nav.js"></script>
