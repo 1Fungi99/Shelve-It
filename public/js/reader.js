@@ -1,5 +1,8 @@
 $(document).ready(function () {
 
+    // Global Variables when DOM loads
+    var displayedId = [];
+
     var $submitSearch = $("#submitbtn");
     //functions on click events 
     var readerFormSubmit = function (event) {
@@ -124,13 +127,28 @@ $(document).ready(function () {
 
     // This creates the Quill editor with the custom modules specified
     $(".masterpieceButton").on("click", function () {
-        var quill = new Quill(".quillReader", {
-            scrollingContainer: ".card-body",
-            theme: "snow",
-            readOnly: true,
-            modules: {
-                toolbar: false
+        var id = $(this).attr("data-id");
+        displayedId.push(id);
+        $.get("/api/compose/" + displayedId[0], function (data) {
+            if (data) {
+                // If data exists make a new quill container, set the scrolling container, theme, readOnly, and no tools in toolbar
+                var quill = new Quill(".quillReader" + displayedId[0], {
+                    scrollingContainer: ".quillScroller" + displayedId[0],
+                    theme: "snow",
+                    readOnly: true,
+                    modules: {
+                        toolbar: false,
+                    }
+                });
+
+                // Quill editor cleared using setText method from Quill doc
+                quill.setText("");
+                // Quill editor filled with storyText data from this id
+                quill.setContents(JSON.parse(data.storyText));
+                displayedId = [];
             }
         });
+
+
     });
 });

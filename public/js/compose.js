@@ -34,14 +34,14 @@ $(document).ready(function () {
     calculate() {
       let text = this.quill.getText().trim();
       if (text.length === 0) {
-        $("#counterBadge").addClass("btn-danger");
+        $("#counterBadge").addClass("badge-danger");
       } else if (text.length > 0 && text.length <= 99) {
-        $("#counterBadge").removeClass("btn-danger");
-        $("#counterBadge").addClass("btn-warning");
+        $("#counterBadge").removeClass("badge-danger");
+        $("#counterBadge").addClass("badge-warning");
       } else if (text.length >= 100) {
-        $("#counterBadge").removeClass("btn-danger");
-        $("#counterBadge").removeClass("btn-warning");
-        $("#counterBadge").addClass("btn-success");
+        $("#counterBadge").removeClass("badge-danger");
+        $("#counterBadge").removeClass("badge-warning");
+        $("#counterBadge").addClass("badge-success");
       }
       if (this.options.unit === 'word') {
         text = text.trim();

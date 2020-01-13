@@ -66,35 +66,54 @@
                     <div class="card-footer text-muted border-light">
                         Get comfortable, you are in for a good time.
                     </div>
-                    {{#each stories}}
-                    {{#unless draft}}
-                    <div class="card bg-light mb-3 collapse number{{this.id}}">
-                        <div class="card-body" id="story-list">
-                        </div>
-                        <div style="color:#000000">
-                            <span style="font-weight:bold;">{{title}}</span>
-                            <br>
-                            <span style="font-weight:bold;">Category: {{category}}</span>
-                            <br>
-                            <span style="font-weight:bold;">Type: {{storyType}}</span>
-                            <br>
-                            <div class="card-body">
-                                <div class="quillReader">{{storyText}}</div>
+                    <div class="container-fluid">
+                        {{#each stories}}
+                        {{#unless draft}}
+                        <div class="row">
+                            <div class="col-sm-1"></div>
+                            <div class="col-sm-10">
+                                <div class="card bg-light mb-3 collapse number{{this.id}}">
+                                    <div class="card-body" id="story-list">
+                                    </div>
+                                    <div style="color:#000000">
+                                        <span>{{title}}</span>
+                                        <br>
+                                        <span>Category: {{category}}</span>
+                                        <br>
+                                        <span>Type: {{storyType}}</span>
+                                        <br>
+                                        <div class="card bg-light mb-3">
+                                            <div class="card-body quillScroller{{this.id}}">
+                                                <div class="quillReader{{this.id}}"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
+                            <div class="col-sm-1"></div>
                         </div>
+                        {{/unless}}
+                        {{/each}}
                     </div>
-                    {{/unless}}
-                    {{/each}}
                 </div>
             </div>
         </div>
-    </div>
-</div>
 
+        <!-- styling for Quill only on this path -->
+        <style>
+            .ql-container {
+                font-size: 16px;
+            }
 
-<!-- Jquery CDN here -->
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-    integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-<!-- Custom JS link here -->
-<script src="/js/reader.js"></script>
-<script src="/js/nav.js"></script>
+            .ql-editor {
+                padding-right: 12px;
+                padding-left: 12px;
+            }
+        </style>
+
+        <!-- Jquery CDN here -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <!-- Custom JS link here -->
+        <script src="/js/reader.js"></script>
+        <script src="/js/nav.js"></script>
