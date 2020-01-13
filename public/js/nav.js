@@ -163,12 +163,31 @@ $(document).ready(function() {
         // console logs user information
 
         var displayName = user.displayName;
+        var res = displayName.split(" ");
+        console.log(res);
+
         var email = user.email;
         var emailVerified = user.emailVerified;
         var photoURL = user.photoURL;
         var isAnonymous = user.isAnonymous;
         var uid = user.uid;
         var providerData = user.providerData;
+
+        var signupData = {
+          first_name: res[1],
+          last_name: res[2],
+          email_address: email
+        };
+
+        $.get("/api/data/" + user.email, function(data) {
+          if (!data) {
+            $.ajax({
+              type: "POST",
+              url: "/api/signup",
+              data: signupData
+            });
+          }
+        });
 
         // Revising UI for log in
 
