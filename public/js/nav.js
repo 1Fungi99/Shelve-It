@@ -96,17 +96,18 @@ $(document).ready(function() {
           url: "/api/signup",
           data: newUserData
         }).then(function(data) {
-          // console.log(data);
+          console.log(data);
+          firebase
+            .auth()
+            .createUserWithEmailAndPassword(data.email_address, data.pass)
+            .catch(function(error) {
+              var errorCode = error.code;
+              var errorMessage = error.message;
+              console.log("Error code: " + errorCode);
+              console.log("Error message: " + errorMessage);
+            });
 
           $("#sign-up").modal("hide");
-          user
-            .updateProfile({
-              displayName: newUserData.first_name + " " + newUserData.last_name
-            })
-            .then(function() {
-              // Update successful.
-            });
-          console.log(email + " and " + password);
         });
       } else {
         $("#signup-alert").removeClass("d-none");
@@ -131,14 +132,17 @@ $(document).ready(function() {
       .trim();
 
     $.get("/api/login/" + email, function(data) {
-      if (data) {
-        if (data.pass === password) {
-          // auth for log ins, sent to firebase
-          firebase.auth().signInWithEmailAndPassword(email, password);
-          $("#log-in").modal("hide");
-        } else {
-          $("#login-alert").removeClass("d-none");
-        }
+      console.log("data below");
+      if (data == null) {
+        $("#login-alert").removeClass("d-none");
+      } else if (data.pass === password) {
+        // auth for log ins, sent to firebase
+        firebase
+          .auth()
+          .signInWithEmailAndPassword(data.email_address, data.pass);
+        $("#log-in").modal("hide");
+      } else {
+        $("#login-alert").removeClass("d-none");
       }
     });
   });
@@ -157,37 +161,18 @@ $(document).ready(function() {
     firebase.auth().onAuthStateChanged(function(user) {
       if (user) {
         console.log("User is signed in! Data below:");
-        console.log(user);
 
         // User is signed in.
         // console logs user information
 
         var displayName = user.displayName;
-        var res = displayName.split(" ");
-        console.log(res);
-
         var email = user.email;
         var emailVerified = user.emailVerified;
         var photoURL = user.photoURL;
         var isAnonymous = user.isAnonymous;
         var uid = user.uid;
         var providerData = user.providerData;
-
-        var signupData = {
-          first_name: res[1],
-          last_name: res[2],
-          email_address: email
-        };
-
-        $.get("/api/data/" + user.email, function(data) {
-          if (!data) {
-            $.ajax({
-              type: "POST",
-              url: "/api/signup",
-              data: signupData
-            });
-          }
-        });
+        console.log("User Email: " + email);
 
         // Revising UI for log in
 
