@@ -7,7 +7,7 @@ Shelve-It is a storytelling platform for amateur authors and eager readers. For 
 
 With your mind as the script, your hands as pens, and our app as your paper, anything is possible!
 
-# Highlight of our product
+## Highlight of our product
 Book Search Engine - Draft Feature - Author authentication - Author Composition -  Publication feature - Readers Newsfeed 
 
 ## Getting Started:
