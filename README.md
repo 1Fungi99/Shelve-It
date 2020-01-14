@@ -41,17 +41,17 @@ This will command your computer to download a `node_modules` folder with all the
 - [Angular.js](https://angularjs.org/)JavaScript-based open-source front-end web framework
 - Databases:
   - MySQL
-####FirebaseDB
-####JawsDB
-####Hosted on Heroku
-###Views:
-####Express Handlebars
-####Quill Editor
-####Styling:
-####Custom Fonts
-####Bootstrap
-####After Effects
-###DB requests with Sequelize & FirebaseDB
+  - FirebaseDB
+  - JawsDB
+- Hosted on Heroku
+- Views
+  - Express Handlebars
+  - Quill Editor
+- Styling:
+   - Custom Fonts
+   - Bootstrap
+   - After Effects
+- DB requests with Sequelize & FirebaseDB
 
 
 # Collaborators:
