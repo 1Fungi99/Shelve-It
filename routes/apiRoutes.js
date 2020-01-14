@@ -100,8 +100,8 @@ module.exports = function(app) {
         }
       })
       .then(function(dbUser) {
-        console.log(dbUser.dataValues);
-        res.json(dbUser.dataValues);
+        console.log(dbUser);
+        res.json(dbUser);
       });
   });
 
