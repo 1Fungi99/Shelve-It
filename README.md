@@ -10,7 +10,8 @@ With your mind as the script, your hands as pens, and our app as your paper, any
 ## Highlight of our product
 Book Search Engine - Draft Feature - Author authentication - Author Composition -  Publication feature - Readers Newsfeed 
 
-## Getting Started:
+## Development
+### Getting Started:
 
 ### Prerequisites
 
