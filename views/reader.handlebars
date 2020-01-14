@@ -2,6 +2,7 @@
     <br>
     <div class="container-fluid">
         <div class="row">
+            <div class="col-md-1"></div>
             <div class="col-md-3">
                 <div class="card text-center text-white bg-dark mb-3">
                     <div class="card-header border-light">
@@ -36,7 +37,8 @@
                                     <input type="text" id="search-text" class="form-control"
                                         aria-describedby="search-text" placeholder="Book Title">
                                 </div>
-                                <button id="submitbtn" class="btn btn-primary float-right">Submit</button>
+                                <button id="submitbtn" type="button" class="btn btn-primary float-right">Search <i
+                                        class="fas fa-search"></i></button>
                             </form>
                         </div>
                         <div class="col-sm-1"></div>
@@ -44,24 +46,20 @@
                     <br>
                     <!-- Search result section -->
                     <div class="row" style="color: #000000">
-                        <div class="col-sm-12">
-                            <br>
-                            <div class="card">
-                                <div class="card-header">
-                                    <strong>
-                                        <i class="fa fa-table"></i> Searches</strong>
-                                </div>
-                                <div class="card-body" id="book-list">
-                                </div>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            <div class="card" id="book-list">
                             </div>
+                            <br>
                         </div>
+                        <div class="col-sm-1"></div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-md-7">
                 <div class="card text-center text-white bg-dark mb-3">
                     <div class="card-header border-light">
-                        <h1>Enjoy</h1>
+                        <h1>Enjoy <i class="fas fa-book-open fa-xs"></i></h1>
                     </div>
                     <div class="card-footer text-muted border-light">
                         Get comfortable, you are in for a good time.
@@ -72,23 +70,14 @@
                         <div class="row">
                             <div class="col-sm-1"></div>
                             <div class="col-sm-10">
-                                <div class="card bg-light mb-3 collapse number{{this.id}}">
-                                    <div class="card-body" id="story-list">
-                                    </div>
-                                    <div style="color:#000000">
-                                        {{!-- <span>{{title}}</span>
-                                        <br>
-                                        <span>Category: {{category}}</span>
-                                        <br>
-                                        <span>Type: {{storyType}}</span> --}}
-                                        <a tabindex="0" class="btn btn-lg btn-danger infoBubble" role="button"
-                                            data-toggle="popover" data-placement="top" title="Category: {{category}}"
-                                            data-content="Type: {{storyType}}">{{title}}</a>
-                                        <br>
-                                        <div class="card bg-light mb-3">
-                                            <div class="card-body quillScroller{{this.id}}">
-                                                <div class="quillReader{{this.id}}"></div>
-                                            </div>
+                                <div class="card bg-secondary mb-3 collapse number{{this.id}}">
+                                    <br>
+                                    <a class="btn btn-lg btn-info infoBubble" data-trigger="hover" data-toggle="popover"
+                                        data-placement="top" title="Category: {{category}}"
+                                        data-content="Type: {{storyType}}">{{title}}</a>
+                                    <div>
+                                        <div class="card-body quillScroller{{this.id}}" style="color: #000000">
+                                            <div class="quillReader{{this.id}}"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -100,6 +89,7 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-1"></div>
         </div>
 
         <!-- styling for Quill only on this path -->
@@ -111,6 +101,7 @@
             .ql-editor {
                 padding-right: 12px;
                 padding-left: 12px;
+                background-color: #ffffff;
             }
         </style>
 
