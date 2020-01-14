@@ -77,21 +77,22 @@ a {
   top: 35%;
 }
 
-/* #loader{
+#loader{
   height: 1500px;
   width: 1500px;
-  background-color: #E7808B;
   position: fixed;
+  background-size: cover;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 999;
-  transition: all 1s;
-  background-image: url("../videos/BurningTransition.gif");
+  background-image: url("../videos/burn.gif");
+  transition: ease-out 5s;
+  opacity: 1;
   
 }
 
-#loader img{
+/* #loader img{
   position: absolute;
   top: 50%;
   left: 50%;
