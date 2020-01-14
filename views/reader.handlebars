@@ -76,11 +76,14 @@
                                     <div class="card-body" id="story-list">
                                     </div>
                                     <div style="color:#000000">
-                                        <span>{{title}}</span>
+                                        {{!-- <span>{{title}}</span>
                                         <br>
                                         <span>Category: {{category}}</span>
                                         <br>
-                                        <span>Type: {{storyType}}</span>
+                                        <span>Type: {{storyType}}</span> --}}
+                                        <a tabindex="0" class="btn btn-lg btn-danger infoBubble" role="button"
+                                            data-toggle="popover" data-placement="top" title="Category: {{category}}"
+                                            data-content="Type: {{storyType}}">{{title}}</a>
                                         <br>
                                         <div class="card bg-light mb-3">
                                             <div class="card-body quillScroller{{this.id}}">

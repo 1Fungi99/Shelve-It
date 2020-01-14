@@ -3,6 +3,8 @@ $(document).ready(function () {
     // Global Variables when DOM loads
     var displayedId = [];
 
+
+
     var $submitSearch = $("#submitbtn");
     //functions on click events 
     var readerFormSubmit = function (event) {
@@ -129,6 +131,7 @@ $(document).ready(function () {
     $(".masterpieceButton").on("click", function () {
         var id = $(this).attr("data-id");
         displayedId.push(id);
+        // $(".infoBubble").popover("hide");
         $.get("/api/compose/" + displayedId[0], function (data) {
             if (data) {
                 // If data exists make a new quill container, set the scrolling container, theme, readOnly, and no tools in toolbar
@@ -151,4 +154,13 @@ $(document).ready(function () {
 
 
     });
+
+    //Enabling Bootstrap popovers
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
+    //Using the focus trigger to dismiss popovers on the user’s next click of a different element than the toggle element.
+    $(".infoBubble").popover({
+        trigger: 'focus'
+    })
 });
