@@ -172,7 +172,7 @@ $(document).ready(function() {
         var isAnonymous = user.isAnonymous;
         var uid = user.uid;
         var providerData = user.providerData;
-        console.log("User Email: " + email);
+        // console.log("User Email: " + email);
 
         // Revising UI for log in
 
