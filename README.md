@@ -39,6 +39,20 @@ This will command your computer to download a `node_modules` folder with all the
 - [Google Sign-In](https://developers.google.com/identity/sign-in/web) - Get users into your apps quickly and securely, using a registration system they already use and trust -- their Google account.
 - [Quill Editor](https://quilljs.com/) Quill is a free, open source WYSIWYG editor built for the modern web
 - [Angular.js](https://angularjs.org/)JavaScript-based open-source front-end web framework
+###Databases:
+####MySQL
+####FirebaseDB
+####JawsDB
+####Hosted on Heroku
+###Views:
+####Express Handlebars
+####Quill Editor
+####Styling:
+####Custom Fonts
+####Bootstrap
+####After Effects
+###DB requests with Sequelize & FirebaseDB
+
 
 # Collaborators:
 
