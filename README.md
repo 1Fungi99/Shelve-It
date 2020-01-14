@@ -6,6 +6,8 @@ Shelve-It mission is to create a new internet community to support low-ley autho
 Shelve-It is a storytelling platform for amateur authors and eager readers. For readers, it consists of a digital library and the ability to search a book using Google API. For authors, it is a free online writing site that provides the tools for writers to publish their work. Shelve-It publishes fiction, poetry, and non-fiction. Open to published and unpublished writers, we aim to showcase exceptional work only.
 
 With your mind as the script, your hands as pens, and our app as your paper, anything is possible!
+
+# Highlight of our product
 Book Search Engine - Draft Feature - Author authentication - Author Composition -  Publication feature - Readers Newsfeed 
 
 ## Getting Started:
