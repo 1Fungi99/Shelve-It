@@ -79,8 +79,8 @@ a {
 }
 
 #loader {
-  height: 1500px;
-  width: 2000px;
+  height: 100%;
+  width: 100%;
   position: absolute;
   background-size: cover;
   top: 50%;
