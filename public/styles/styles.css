@@ -103,6 +103,11 @@ a {
   text-decoration: none;
 }
 
+/* This is for the button on index page that shows up after user log in */
+#index-author-button {
+  margin-top: 60px;
+}
+
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
 /* Quill Editor CSS changes Below */
 /* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */
