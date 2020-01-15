@@ -1,7 +1,7 @@
 // //ON Load//
 
 var loader = document.getElementById("loader");
-setTimeout(function () { document.getElementById("loader").style.display = "none"; }, 7000);
+setTimeout(function () { document.getElementById("loader").style.display = "none"; }, 8000);
 
 // document.querySelector("#loader").addEventListener("load", function () {
 //   loader.style.height = "1500px";
