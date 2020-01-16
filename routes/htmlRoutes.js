@@ -3,7 +3,7 @@ var db = require("../models");
 module.exports = function (app) {
   // Load home page
   app.get("/", function (req, res) {
-    db.user.findAll({}).then(function (data) {
+    db.User.findAll({}).then(function (data) {
       res.render("index", {});
     });
   });
