@@ -34,7 +34,7 @@ module.exports = function (sequelize, DataTypes) {
       defaultValue: true
     }
   }, {
-    freezeTableName: true // Model tableName will be the same as the model name
+    freezeTableName: false // Model tableName will be the same as the model name
   });
 
 
