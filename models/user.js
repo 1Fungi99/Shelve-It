@@ -33,13 +33,14 @@ module.exports = function (sequelize, DataTypes) {
       allowNull: false,
       defaultValue: true
     }
+  }, {
+    freezeTableName: true // Model tableName will be the same as the model name
   });
 
 
   User.associate = function (models) {
     User.hasMany(models.Story, {
       onDelete: "cascade"
-
     });
 
   };
