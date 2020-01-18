@@ -37,16 +37,16 @@ module.exports = function (sequelize, DataTypes) {
   }
 
   );
-  // ====> "Commented out Temporarily to Test Form Submissions to database"- Emir <====
-  // Story.associate = function (models) {
-  //   // We're saying that a Story should belong to an Author
-  //   // A Story can't be created without an Author due to the foreign key constraint
-  //   Story.belongsTo(models.User, {
-  //     foreignKey: {
-  //       allowNull: false
-  //     }
-  //   });
-  // };
+
+  Story.associate = function (models) {
+    //   // We're saying that a Story should belong to a user
+    //   // A Story can't be created without an user due to the foreign key constraint
+    Story.belongsTo(models.user, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
 
   return Story;
 };

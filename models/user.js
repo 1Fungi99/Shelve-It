@@ -1,4 +1,4 @@
-module.exports = function(sequelize, DataTypes) {
+module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("user", {
     first_name: {
       type: DataTypes.STRING,
@@ -35,13 +35,13 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  // ====> "Commented out Temporarily to Test Form Submissions to database"- Emir <====
-  // user.associate = function (models) {
-  //   user.hasMany(models.Story, {
-  //     onDelete: "cascade"
 
-  //   });
+  User.associate = function (models) {
+    User.hasMany(models.Story, {
+      onDelete: "cascade"
 
-  // }
+    });
+
+  };
   return User;
 };
