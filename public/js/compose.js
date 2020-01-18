@@ -306,6 +306,7 @@ $(document).ready(function () {
 
     var story = {
       title: $("#titleBox").val(),
+      userId: 1,
       // This gets the contents of the Quill editor in a Delta format --> https://quilljs.com/docs/delta/
       // Then we stringify for submission to the database as a string, JSON.parse() will make it back into json object
       storyText: JSON.stringify(quill.getContents()),
@@ -370,6 +371,7 @@ $(document).ready(function () {
 
     var story = {
       title: $("#titleBox").val(),
+      userId: 1,
       // This gets the contents of the Quill editor in a Delta format --> https://quilljs.com/docs/delta/
       // Then we stringify for submission to the database as a string, JSON.parse() will make it back into json object
       storyText: JSON.stringify(quill.getContents()),
@@ -434,7 +436,16 @@ $(document).ready(function () {
     // Type cleared
     $("#typeBox").val("");
   };
-
+  displayName();
+  function displayName() {
+    $.get("/api/name", function (data) {
+      console.log("insidedisplayName");
+      console.log(data);
+      if (data) {
+        $("#IdName").val(data[0].user.first_name);
+      }
+    });
+  }
 
 });
 
