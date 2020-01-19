@@ -20,7 +20,7 @@ $(document).ready(function () {
     [{ 'align': [] }],                              // Align Button
     ['clean'],                                      // remove formatting button
   ];
-
+  var userId;
   // This constructor function is for the counter module to be created
   class Counter {
     constructor(quill, options) {
@@ -306,7 +306,7 @@ $(document).ready(function () {
 
     var story = {
       title: $("#titleBox").val(),
-      userId: 1,
+      userId: userId,
       // This gets the contents of the Quill editor in a Delta format --> https://quilljs.com/docs/delta/
       // Then we stringify for submission to the database as a string, JSON.parse() will make it back into json object
       storyText: JSON.stringify(quill.getContents()),
@@ -368,10 +368,10 @@ $(document).ready(function () {
     var btnNoSuccess = "Unable to Publish Your Masterpiece!";
     var btnSuccess = "Succesfully Published!";
     var successBody = "It's Better Read Then Dead. <i class='fas fa-fire'></i>";
-
+    console.log("$$$ user ID from newPublishSubmission fun : " + userId)
     var story = {
       title: $("#titleBox").val(),
-      userId: 1,
+      userId: userId,
       // This gets the contents of the Quill editor in a Delta format --> https://quilljs.com/docs/delta/
       // Then we stringify for submission to the database as a string, JSON.parse() will make it back into json object
       storyText: JSON.stringify(quill.getContents()),
@@ -441,9 +441,13 @@ $(document).ready(function () {
     $.get("/api/name", function (data) {
       console.log("insidedisplayName");
       console.log(data);
+      console.log("*user id from display Name function: " + data[0].user.id)
       if (data) {
         $("#IdName").val(data[0].user.first_name);
       }
+      userId = data[0].user.id;
+      console.log("userID from displayName fun: " + userId)
+
     });
   }
 
