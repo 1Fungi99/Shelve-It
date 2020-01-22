@@ -303,7 +303,7 @@ $(document).ready(function () {
     var btnNoSuccess = "Unable to Save Draft!";
     var btnSuccess = "Succesfully Saved Draft!";
     var successBody = "Your rough draft was saved. You may now close to continue.";
-
+    displayName();
     var story = {
       title: $("#titleBox").val(),
       userId: userId,
@@ -364,6 +364,7 @@ $(document).ready(function () {
 
   function newPublishSubmission() {
     // This line gets the string contents of the editor. Non-string contents are omitted.
+    displayName();
     var quillCharacters = quill.getText().trim();
     var btnNoSuccess = "Unable to Publish Your Masterpiece!";
     var btnSuccess = "Succesfully Published!";
@@ -436,7 +437,7 @@ $(document).ready(function () {
     // Type cleared
     $("#typeBox").val("");
   };
-  displayName();
+
   function displayName() {
     $.get("/api/name", function (data) {
       console.log("insidedisplayName");
@@ -445,10 +446,10 @@ $(document).ready(function () {
       if (data) {
         $("#IdName").val(data[0].user.first_name);
       }
-      userId = data[0].user.id;
-      console.log("userID from displayName fun: " + userId)
+      console.log("userID from displayName fun: " + userId);
 
     });
+    return userId = 1;
   }
 
 });
