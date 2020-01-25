@@ -2,6 +2,9 @@ $(document).ready(function () {
   var provider = new firebase.auth.GoogleAuthProvider();
   var user = firebase.auth().currentUser;
 
+
+  console.log(user);
+
   // ================= Reset Modal Logic Below =================
   // Once modal is closed, all fields reset.
   $("#nav_login").on("click", function () {
@@ -142,6 +145,9 @@ $(document).ready(function () {
         // firebase.auth().signInWithEmailAndPassword(data.email_address, data.pass);
         // "Session will only persist in the current session or tab, and will be cleared when the 
         // tab or window in which the user authenticated is closed. Applies only to web apps." FireB Docs - Emir
+
+        var data1 = JSON.stringify(data);
+        localStorage.setItem("user", data1);
         firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
           .then(function () {
             return firebase.auth().signInWithEmailAndPassword(data.email_address, data.pass);

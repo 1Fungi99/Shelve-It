@@ -1,3 +1,5 @@
+
+
 // Logic for compose.js path
 $(document).ready(function () {
   //================================MAIN EXECUTIONS=====================================//
@@ -19,7 +21,18 @@ $(document).ready(function () {
     [{ 'align': [] }],                              // Align Button
     ['clean'],                                      // remove formatting button
   ];
-  var userId;
+  var data = localStorage.getItem("user");
+
+  var data1 = JSON.parse(data);
+  console.log(data1);
+  console.log(data1.id);
+
+
+  var userID = data1.id;
+  console.log(JSON.parse(data.id));
+
+
+
   // This constructor function is for the counter module to be created
   class Counter {
     constructor(quill, options) {
@@ -302,10 +315,10 @@ $(document).ready(function () {
     var btnNoSuccess = "Unable to Save Draft!";
     var btnSuccess = "Succesfully Saved Draft!";
     var successBody = "Your rough draft was saved. You may now close to continue.";
-    displayName();
+
     var story = {
       title: $("#titleBox").val(),
-      userId: userId,
+      userId: userID,
       // This gets the contents of the Quill editor in a Delta format --> https://quilljs.com/docs/delta/
       // Then we stringify for submission to the database as a string, JSON.parse() will make it back into json object
       storyText: JSON.stringify(quill.getContents()),
@@ -363,7 +376,7 @@ $(document).ready(function () {
 
   function newPublishSubmission() {
     // This line gets the string contents of the editor. Non-string contents are omitted.
-    displayName();
+
     var quillCharacters = quill.getText().trim();
     var btnNoSuccess = "Unable to Publish Your Masterpiece!";
     var btnSuccess = "Succesfully Published!";
@@ -371,7 +384,7 @@ $(document).ready(function () {
     console.log("$$$ user ID from newPublishSubmission fun : " + userId)
     var story = {
       title: $("#titleBox").val(),
-      userId: userId,
+      userId: userID,
       // This gets the contents of the Quill editor in a Delta format --> https://quilljs.com/docs/delta/
       // Then we stringify for submission to the database as a string, JSON.parse() will make it back into json object
       storyText: JSON.stringify(quill.getContents()),
