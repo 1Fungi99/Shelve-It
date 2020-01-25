@@ -41,7 +41,7 @@ module.exports = function (sequelize, DataTypes) {
   Story.associate = function (models) {
     //   // We're saying that a Story should belong to a user
     //   // A Story can't be created without an user due to the foreign key constraint
-    Story.belongsTo(models.user, {
+    Story.belongsTo(models.User, {
       foreignKey: {
         allowNull: false
       }

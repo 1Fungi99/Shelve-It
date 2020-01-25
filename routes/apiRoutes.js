@@ -11,7 +11,7 @@ module.exports = function (app) {
   });
   //join data with Story and User tables
   app.get("/api/name", function (req, res) {
-    db.Story.findAll({ include: [db.user] }).then(function (data) {
+    db.Story.findAll({ include: [db.User] }).then(function (data) {
       res.json(data);
     });
   });
@@ -22,20 +22,34 @@ module.exports = function (app) {
     });
   });
   //to get all the story data - trial 2
-  app.get("/stories", function (req, res) {
-    // findAll returns all entries for a table when used with no options
-    db.Story.findAll({}).then(function (data) {
-      console.log(data);
-      // We have access to the todos as an argument inside of the callback function
-      var storyObject = {
-        stories: data,
-        msg: "Reader Homepage"
-      };
-      res.render("reader", storyObject);
+  // app.get("/stories", function (req, res) {
+  //   // findAll returns all entries for a table when used with no options
+  //   db.Story.findAll({}).then(function (data) {
+  //     console.log(data);
+  //     // We have access to the todos as an argument inside of the callback function
+  //     var storyObject = {
+  //       stories: data,
+  //       msg: "Reader Homepage"
+  //     };
+  //     res.render("reader", storyObject);
+  //   });
+  // });
+
+  // GET route for getting all of the posts with user association
+  app.get("/api/masterpieces", function (req, res) {
+    let query = {};
+    if (req.query.user_id) {
+      query.UserId = req.query.user_id;
+    }
+    // Join here to include users to their posts
+    db.Story.findAll({
+      where: query,
+      include: [db.User]
+    }).then(function (dbStory) {
+      res.json(dbStory);
     });
   });
-
-  //============================ Story API Routes ==============================//
+  //============================ Story API Routes Below ==============================//
 
   // POST route for creating a new story
   app.post("/api/compose", function (req, res) {
@@ -84,7 +98,7 @@ module.exports = function (app) {
     });
   });
 
-  //============================ Story API Routes ==============================//
+  //============================ Story API Routes Above ==============================//
   app.get("/api/data/:email", function (req, res) {
     db.user
       .findOne({
@@ -113,7 +127,7 @@ module.exports = function (app) {
 
   // Submitting sign up information
   app.post("/api/signup", function (req, res) {
-    db.user
+    db.User
       .create({
         pass: req.body.pass,
         first_name: req.body.first_name,

@@ -1,3 +1,4 @@
+// Logic for stories path
 $(document).ready(function () {
 
     // Global Variables when DOM loads

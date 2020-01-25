@@ -1,7 +1,6 @@
 // Logic for compose.js path
 $(document).ready(function () {
   //================================MAIN EXECUTIONS=====================================//
-
   // Global Variables when DOM loads, used for flagging deletions & edits of masterpieces
   var url = window.location.search;
   var executeDelete = false;
@@ -438,6 +437,7 @@ $(document).ready(function () {
     $("#typeBox").val("");
   };
 
+  // This is probably calling the wrong api route, instead of calling the user - Emir
   function displayName() {
     $.get("/api/name", function (data) {
       console.log("insidedisplayName");
