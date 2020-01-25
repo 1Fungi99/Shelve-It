@@ -100,7 +100,7 @@ module.exports = function (app) {
 
   //============================ Story API Routes Above ==============================//
   app.get("/api/data/:email", function (req, res) {
-    db.user
+    db.User
       .findOne({
         where: {
           email_address: req.params.email
@@ -113,7 +113,7 @@ module.exports = function (app) {
   });
 
   app.get("/api/login/:email", function (req, res) {
-    db.user
+    db.User
       .findOne({
         where: {
           email_address: req.params.email
