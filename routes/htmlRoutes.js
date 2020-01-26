@@ -19,8 +19,10 @@ module.exports = function (app) {
 
   //Load Reader page for user
   app.get("/stories", function (req, res) {
-    res.render("reader", {
-      msg: "Reader Homepage"
+    db.Story.findAll({}).then(function (dbStory) {
+      res.render("reader", {
+        stories: dbStory
+      });
     });
   });
 

@@ -21,19 +21,6 @@ module.exports = function (app) {
       res.json(data);
     });
   });
-  //to get all the story data - trial 2
-  // app.get("/stories", function (req, res) {
-  //   // findAll returns all entries for a table when used with no options
-  //   db.Story.findAll({}).then(function (data) {
-  //     console.log(data);
-  //     // We have access to the todos as an argument inside of the callback function
-  //     var storyObject = {
-  //       stories: data,
-  //       msg: "Reader Homepage"
-  //     };
-  //     res.render("reader", storyObject);
-  //   });
-  // });
 
   // GET route for getting all of the posts with user association
   app.get("/api/masterpieces", function (req, res) {
@@ -70,7 +57,8 @@ module.exports = function (app) {
     db.Story.findOne({
       where: {
         id: req.params.id
-      }
+      },
+      include: [db.User]
     }).then(function (dbStory) {
       res.json(dbStory);
     });

@@ -21,17 +21,6 @@ $(document).ready(function () {
     [{ 'align': [] }],                              // Align Button
     ['clean'],                                      // remove formatting button
   ];
-  var data = localStorage.getItem("user");
-
-  var data1 = JSON.parse(data);
-  console.log(data1);
-  console.log(data1.id);
-
-
-  var userID = data1.id;
-  console.log(JSON.parse(data.id));
-
-
 
   // This constructor function is for the counter module to be created
   class Counter {
@@ -85,6 +74,13 @@ $(document).ready(function () {
       }
     }
   });
+
+  //================================LOCAL STORAGE SECTION=====================================//
+  // After Quill editor is loaded on the dom, we get the localstorage data for the user
+  var userLoggedInData = localStorage.getItem("user");
+  var userObjct = JSON.parse(userLoggedInData);
+  var loggedUserId = userObjct.id;
+  //==============================LOCAL STORAGE SECTION END===================================//
 
   // This on click event handler is for the discard button on 
   // author tools, executes when user clicks yes on modal
@@ -149,7 +145,6 @@ $(document).ready(function () {
     var id = $(this).data("id");
     console.log(id);
     editId.push(id);
-    console.log(editId[0]);
     $(".yesUpdate").on("click", function (event) {
 
       $.get("/api/compose/" + id, function (data) {
@@ -318,13 +313,13 @@ $(document).ready(function () {
 
     var story = {
       title: $("#titleBox").val(),
-      userId: userID,
       // This gets the contents of the Quill editor in a Delta format --> https://quilljs.com/docs/delta/
       // Then we stringify for submission to the database as a string, JSON.parse() will make it back into json object
       storyText: JSON.stringify(quill.getContents()),
       category: $("#categoryBox").val(),
       storyType: $("#typeBox").val(),
-      draft: true
+      draft: true,
+      UserId: loggedUserId
     };
 
     if (story.title.length >= 1 && quillCharacters.length >= 100 && story.category.length > 1 && story.storyType.length > 1) {
@@ -376,21 +371,20 @@ $(document).ready(function () {
 
   function newPublishSubmission() {
     // This line gets the string contents of the editor. Non-string contents are omitted.
-
     var quillCharacters = quill.getText().trim();
     var btnNoSuccess = "Unable to Publish Your Masterpiece!";
     var btnSuccess = "Succesfully Published!";
     var successBody = "It's Better Read Then Dead. <i class='fas fa-fire'></i>";
-    console.log("$$$ user ID from newPublishSubmission fun : " + userId)
+
     var story = {
       title: $("#titleBox").val(),
-      userId: userID,
       // This gets the contents of the Quill editor in a Delta format --> https://quilljs.com/docs/delta/
       // Then we stringify for submission to the database as a string, JSON.parse() will make it back into json object
       storyText: JSON.stringify(quill.getContents()),
       category: $("#categoryBox").val(),
       storyType: $("#typeBox").val(),
-      draft: false
+      draft: false,
+      UserId: loggedUserId
     };
 
     if (story.title.length >= 1 && quillCharacters.length >= 100 && story.category.length > 1 && story.storyType.length > 1) {
@@ -449,21 +443,6 @@ $(document).ready(function () {
     // Type cleared
     $("#typeBox").val("");
   };
-
-  // This is probably calling the wrong api route, instead of calling the user - Emir
-  function displayName() {
-    $.get("/api/name", function (data) {
-      console.log("insidedisplayName");
-      console.log(data);
-      console.log("*user id from display Name function: " + data[0].user.id)
-      if (data) {
-        $("#IdName").val(data[0].user.first_name);
-      }
-      console.log("userID from displayName fun: " + userId);
-
-    });
-    return userId = 1;
-  }
 
 });
 
