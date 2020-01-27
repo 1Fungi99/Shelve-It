@@ -57,8 +57,6 @@ $(document).ready(function () {
     };
 
     $.get("/api/data/" + newUserData.email_address, function (data) {
-      // .then(function (data) {
-      console.log(data);
       if (data) {
         if (
           data.email_address ==
@@ -95,15 +93,25 @@ $(document).ready(function () {
           url: "/api/signup",
           data: newUserData
         }).then(function (data) {
-          console.log(data);
-          firebase.auth().createUserWithEmailAndPassword(data.email_address, data.pass)
-            // Chaining request to update displayName in firebase when a new user is created - Emir
-            .then(function (fbResult) {
-              return fbResult.user.updateProfile({
-                displayName: newUserData.first_name + " " + newUserData.last_name
-              })
-            })
-            .catch(function (error) {
+          // NOTE= Only saving id to local storage for security purposes.
+          var userLogInData = data.id;
+          localStorage.setItem("user", userLogInData);
+          firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+            .then(function () {
+              firebase.auth().createUserWithEmailAndPassword(data.email_address, data.pass)
+                // Chaining request to update displayName in firebase when a new user is created - Emir
+                .then(function (fbResult) {
+                  return fbResult.user.updateProfile({
+                    displayName: newUserData.first_name + " " + newUserData.last_name
+                  });
+                })
+                .catch(function (error) {
+                  var errorCode = error.code;
+                  var errorMessage = error.message;
+                  console.log("Error code: " + errorCode);
+                  console.log("Error message: " + errorMessage);
+                });
+            }).catch(function (error) {
               var errorCode = error.code;
               var errorMessage = error.message;
               console.log("Error code: " + errorCode);
@@ -139,10 +147,9 @@ $(document).ready(function () {
         $("#login-alert").removeClass("d-none");
       } else if (data.pass === password) {
         // Auth for log ins, sent to firebase
-        // console.log("Log In data Below:");
-        // console.log(data);
-        var data1 = JSON.stringify(data);
-        localStorage.setItem("user", data1);
+        // NOTE= Only saving id to local storage for security purposes.
+        var userLogInData = data.id;
+        localStorage.setItem("user", userLogInData);
         // "Session will only persist in the current session or tab, and will be cleared when the 
         // tab or window in which the user authenticated is closed. Applies only to web apps." FireB Docs - Emir
         firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
@@ -153,10 +160,8 @@ $(document).ready(function () {
             // Handle Errors here.
             var errorCode = error.code;
             var errorMessage = error.message;
-            // The email of the user's account used.
-            var email = error.email;
-            // The firebase.auth.AuthCredential type that was used.
-            var credential = error.credential;
+            console.log("Error code: " + errorCode);
+            console.log("Error message: " + errorMessage);
           });
         $("#log-in").modal("hide");
       } else {
@@ -176,26 +181,16 @@ $(document).ready(function () {
   // ================= Sign Out Logic Above ================
 
   // changes UI when the authentication for the window is changed
-  // window.onload = function () {
   firebase.auth().onAuthStateChanged(function (user) {
     if (user) {
       console.log("User is signed in!");
-
       var displayName = user.displayName;
-      var email = user.email;
-      var emailVerified = user.emailVerified;
-      var photoURL = user.photoURL;
-      var isAnonymous = user.isAnonymous;
-      var uid = user.uid;
-      var providerData = user.providerData;
-      // console.log("User Email: " + email);
-
       // Revising UI for log in
       // This line will change the text in compose path - Emir
       $("#composeHeader").html("Hello " + displayName + ", ready to Compose? <i class='fas fa-feather-alt'></i>");
       // These next two lines will change the text in drop down only when user is logged in - Emir
-      $("#loggedInName").removeClass("d-none");
       $("#loggedInName").text("Hello " + displayName + "!");
+      $("#loggedInName").removeClass("d-none");
       $("#nav_login").addClass("d-none");
       $("#composeDiv1").addClass("d-none");
       $("#nav_signup").addClass("d-none");
@@ -204,14 +199,11 @@ $(document).ready(function () {
       $("#composeDiv2").removeClass("d-none");
       $("#index-author-button").removeClass("d-none");
       $("#google-signup").addClass("d-none");
-
-      //Setting
-      // firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION);
     } else {
       // User is signed out.
       // Revising UI for sign out
 
-      console.log("User is signed out.");
+      console.log("No user logged in.");
       $("#nav_login").removeClass("d-none");
       $("#composeDiv1").removeClass("d-none");
       $("#nav_signup").removeClass("d-none");
@@ -222,7 +214,6 @@ $(document).ready(function () {
       $("#google-signup").removeClass("d-none");
     }
   });
-  // };
 
   //Helper Functions:
 
@@ -241,10 +232,8 @@ $(document).ready(function () {
         // Handle Errors here.
         var errorCode = error.code;
         var errorMessage = error.message;
-        // The email of the user's account used.
-        var email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        var credential = error.credential;
+        console.log("Error code: " + errorCode);
+        console.log("Error message: " + errorMessage);
       });
   }
 });

@@ -1,5 +1,3 @@
-
-
 // Logic for compose.js path
 $(document).ready(function () {
   //================================MAIN EXECUTIONS=====================================//
@@ -78,8 +76,8 @@ $(document).ready(function () {
   //================================LOCAL STORAGE SECTION=====================================//
   // After Quill editor is loaded on the dom, we get the localstorage data for the user
   var userLoggedInData = localStorage.getItem("user");
-  var userObjct = JSON.parse(userLoggedInData);
-  var loggedUserId = userObjct.id;
+  // For security purposes we are only getting id from local storage, then making it a number
+  var loggedUserId = Number(userLoggedInData);
   //==============================LOCAL STORAGE SECTION END===================================//
 
   // This on click event handler is for the discard button on 
@@ -105,7 +103,6 @@ $(document).ready(function () {
     if (!updatingStory) {
       newPublishSubmission();
     } else if (updatingStory) {
-      console.log("Successfully Published!");
       updateStory();
     }
   });
@@ -143,7 +140,6 @@ $(document).ready(function () {
     event.stopPropagation();
     $("#updateModal").modal();
     var id = $(this).data("id");
-    console.log(id);
     editId.push(id);
     $(".yesUpdate").on("click", function (event) {
 
@@ -191,7 +187,6 @@ $(document).ready(function () {
         data: story
       })
         .then(function (data) {
-          console.log(data)
           editId = [];
           $("#successTitle").text(btnSuccess);
           $("#successBody").text(successBody);
@@ -261,7 +256,6 @@ $(document).ready(function () {
         data: story
       })
         .then(function (data) {
-          console.log(data)
           editId = [];
           $("#successTitle").text(btnSuccess);
           $("#successBody").text(successBody);
@@ -327,7 +321,6 @@ $(document).ready(function () {
       $.post("/api/compose", story)
         // On success a modal pops up alerting of the success
         .then(function (data) {
-          console.log(data)
           $("#successTitle").text(btnSuccess);
           $("#successBody").text(successBody);
           $("#successful").modal();
