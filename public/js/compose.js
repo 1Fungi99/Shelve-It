@@ -424,7 +424,6 @@ $(document).ready(function () {
       $("#incompleteFields").append(fieldList);
       $("#notSuccessful").modal();
     };
-    console.log(story);
   };
 
   function discardAll() {
