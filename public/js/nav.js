@@ -176,6 +176,7 @@ $(document).ready(function () {
   //UI should reflect as such
   $("#nav_signout").on("click", function () {
     $("#loggedInName").addClass("d-none");
+    localStorage.clear();
     firebase.auth().signOut();
   });
   // ================= Sign Out Logic Above ================
