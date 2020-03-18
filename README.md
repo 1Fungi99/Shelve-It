@@ -12,45 +12,28 @@ With your mind as the script, your hands as pens, and our app as your paper, any
 
 Book Search Engine - Draft Feature - Author authentication - Author Composition - Publication feature - Readers Newsfeed
 
-## Development
-
-### Getting Started:
-
-### Prerequisites
-
-What you will need to install:
-
-### Installing dependancies:
-
-It is as easy as going into your terminal/powershell in VS Code and typing:
-
-```
-npm i
-```
-
-or
-
-```
-npm install
-```
-
-This will command your computer to download a `node_modules` folder with all the dependancies inside of it.
-
 ## Built With:
 
+- JavaScript
+- jQuery
+- HTML
+- CSS
+- Node.js
+- Express.js
+- Axios
 - Databases:
   - MySQL
   - FirebaseDB
-  - JawsDB
-- Hosted on Heroku
+  - JawsDB (Hosted)
 - Views
   - Express Handlebars
-  - Quill Editor
+  - Quill.js Editor
 - Styling:
   - Custom Fonts
   - Bootstrap
   - After Effects
 - DB requests with Sequelize & FirebaseDB
+- Hosted on Heroku
 
 # Collaborators:
 
